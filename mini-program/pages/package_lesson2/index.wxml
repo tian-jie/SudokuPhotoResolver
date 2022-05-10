@@ -1,23 +1,123 @@
 <view class="page">
-    <view class="page__bd">
-        <view class="weui-panel">
-            <view class="weui-panel__hd">图像处理</view>
-            <view class="weui-panel__bd">
-                    <!-- <image src="{{sampleImage1Url}}" mode="aspectFit" class="inputImage"></image> -->
-                    <!-- canvas v2-->
-                    <canvas id="canvas1" type="2d" class="visibleCanvas" style="width:300rpx;height:300rpx;border: 1px solid red;"></canvas>
-                    <view class="weui-media-box">
-                    <button bindtap="btnRun1" class="marginTop10" type="primary">灰度化</button>
-                    <button bindtap="btnRun2" class="marginTop10" type="primary">黑白</button>
-                    <button bindtap="btnRun3" class="marginTop10" type="primary">边缘检测</button>
-                    <button bindtap="btnRun4" class="marginTop10" type="primary">透视变换</button>
-                    <button bindtap="btnRun5" class="marginTop10" type="primary">分解数字</button>
-                    <button bindtap="btnRun6" class="marginTop10" type="primary">拍照</button>
-                    <button bindtap="btnRun7" class="marginTop10" type="primary">特征点检测</button>
-                </view>
+  <view class="page__bd">
+    <view class="weui-panel">
+        <view class="sudoku-main">
+            <view class="box0">
+              <text class="grid0">{{sudokuData[0]}}</text>
+              <text class="grid0">{{sudokuData[1]}}</text>
+              <text class="grid0">{{sudokuData[2]}}</text>
+              <text class="grid0">{{sudokuData[9]}}</text>
+              <text class="grid0">{{sudokuData[10]}}</text>
+              <text class="grid0">{{sudokuData[11]}}</text>
+              <text class="grid0">{{sudokuData[18]}}</text>
+              <text class="grid0">{{sudokuData[19]}}</text>
+              <text class="grid0">{{sudokuData[20]}}</text>
             </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[3]}}</text>
+              <text class="grid0">{{sudokuData[4]}}</text>
+              <text class="grid0">{{sudokuData[5]}}</text>
+              <text class="grid0">{{sudokuData[12]}}</text>
+              <text class="grid0">{{sudokuData[13]}}</text>
+              <text class="grid0">{{sudokuData[14]}}</text>
+              <text class="grid0">{{sudokuData[21]}}</text>
+              <text class="grid0">{{sudokuData[22]}}</text>
+              <text class="grid0">{{sudokuData[23]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[6]}}</text>
+              <text class="grid0">{{sudokuData[7]}}</text>
+              <text class="grid0">{{sudokuData[8]}}</text>
+              <text class="grid0">{{sudokuData[15]}}</text>
+              <text class="grid0">{{sudokuData[16]}}</text>
+              <text class="grid0">{{sudokuData[17]}}</text>
+              <text class="grid0">{{sudokuData[24]}}</text>
+              <text class="grid0">{{sudokuData[25]}}</text>
+              <text class="grid0">{{sudokuData[26]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[27]}}</text>
+              <text class="grid0">{{sudokuData[28]}}</text>
+              <text class="grid0">{{sudokuData[29]}}</text>
+              <text class="grid0">{{sudokuData[36]}}</text>
+              <text class="grid0">{{sudokuData[37]}}</text>
+              <text class="grid0">{{sudokuData[38]}}</text>
+              <text class="grid0">{{sudokuData[45]}}</text>
+              <text class="grid0">{{sudokuData[46]}}</text>
+              <text class="grid0">{{sudokuData[47]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[30]}}</text>
+              <text class="grid0">{{sudokuData[31]}}</text>
+              <text class="grid0">{{sudokuData[32]}}</text>
+              <text class="grid0">{{sudokuData[39]}}</text>
+              <text class="grid0">{{sudokuData[40]}}</text>
+              <text class="grid0">{{sudokuData[41]}}</text>
+              <text class="grid0">{{sudokuData[48]}}</text>
+              <text class="grid0">{{sudokuData[49]}}</text>
+              <text class="grid0">{{sudokuData[50]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[33]}}</text>
+              <text class="grid0">{{sudokuData[34]}}</text>
+              <text class="grid0">{{sudokuData[35]}}</text>
+              <text class="grid0">{{sudokuData[42]}}</text>
+              <text class="grid0">{{sudokuData[43]}}</text>
+              <text class="grid0">{{sudokuData[44]}}</text>
+              <text class="grid0">{{sudokuData[51]}}</text>
+              <text class="grid0">{{sudokuData[52]}}</text>
+              <text class="grid0">{{sudokuData[53]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[54]}}</text>
+              <text class="grid0">{{sudokuData[55]}}</text>
+              <text class="grid0">{{sudokuData[56]}}</text>
+              <text class="grid0">{{sudokuData[63]}}</text>
+              <text class="grid0">{{sudokuData[64]}}</text>
+              <text class="grid0">{{sudokuData[65]}}</text>
+              <text class="grid0">{{sudokuData[72]}}</text>
+              <text class="grid0">{{sudokuData[73]}}</text>
+              <text class="grid0">{{sudokuData[74]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[57]}}</text>
+              <text class="grid0">{{sudokuData[58]}}</text>
+              <text class="grid0">{{sudokuData[59]}}</text>
+              <text class="grid0">{{sudokuData[66]}}</text>
+              <text class="grid0">{{sudokuData[67]}}</text>
+              <text class="grid0">{{sudokuData[68]}}</text>
+              <text class="grid0">{{sudokuData[75]}}</text>
+              <text class="grid0">{{sudokuData[76]}}</text>
+              <text class="grid0">{{sudokuData[77]}}</text>
+            </view>
+            <view class="box0">
+              <text class="grid0">{{sudokuData[60]}}</text>
+              <text class="grid0">{{sudokuData[61]}}</text>
+              <text class="grid0">{{sudokuData[62]}}</text>
+              <text class="grid0">{{sudokuData[69]}}</text>
+              <text class="grid0">{{sudokuData[70]}}</text>
+              <text class="grid0">{{sudokuData[71]}}</text>
+              <text class="grid0">{{sudokuData[78]}}</text>
+              <text class="grid0">{{sudokuData[79]}}</text>
+              <text class="grid0">{{sudokuData[80]}}</text>
+            </view>
+
+          </view>
+        <view>
+          <view class="photo-box">
+            <canvas id="canvas1" type="2d" class="visibleCanvas"></canvas>
+          </view>
+        </view>
+        <view class="weui-media-box">
+          <button bindtap="takePhoto" class="marginTop10" type="primary">拍照</button>
+          <button bindtap="btnRun1" class="marginTop10" type="primary">灰度化</button>
+          <button bindtap="btnRun2" class="marginTop10" type="primary">黑白</button>
+          <button bindtap="btnRun4" class="marginTop10" type="primary">透视变换</button>
+          <button bindtap="recognize" class="marginTop10" type="primary">识别</button>
+          <button bindtap="resolve" class="marginTop10" type="primary">边缘检测</button>
         </view>
     </view>
+  </view>
 </view>
 <view>
 </view>

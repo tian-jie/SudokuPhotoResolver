@@ -3,6 +3,7 @@ var wx2sync = require("wx2sync.js")
 const maxCanvasWidth = 375
 let cv = require('../assets/opencv_exec.js');
 
+
 async function getGrayMat(_that) {
   if (_that.grayMat == null) {
     var mat = new cv.Mat();
@@ -23,33 +24,49 @@ async function getBlackMat(_that) {
 }
 
 async function getSrcMat(_that) {
+  console.debug("_that.srcMat", _that.srcMat);
   if (_that.srcMat == null) {
     _that.srcMat = new cv.Mat();
     _that.srcMat = cv.imread(_that.imageData);
-    // var width = mat.cols.width;
-    // var height = mat.rows.height;
-    // var targetWidth = width * 0.8;
-    // var x = width * 0.1;
-    // var y = (height - targetWidth) / 2;
-  
-    //let rect = new cv.Rect(0, 0, 200, 200);
-    //console.log("getSrcMat, before roi");
-    //_that.srcMat = mat;
-    //_that.srcMat = mat.roi(rect);
-    //console.log("getSrcMat, after roi");
+    console.debug("cv.imread");
 
     // 设置画布的显示大小
     _that.setData({
       canvas1Width: _that.imageData.width,
       canvas1Height: _that.imageData.height,
     });
-    // mat.delete();
-    // console.log("mat.delete()");
+
+    console.debug("canvas1Width: %d, canvas1Height: %d", _that.imageData.width, _that.imageData.height);
   }
   return _that.srcMat;
 }
 
-function getPoints(points, positiveX, positiveY, centerX, centerY, that) {
+async function clearMats(_that){
+  if(_that.srcMat != null && _that.srcMat != 'undefined'){
+    _that.srcMat.delete();
+    _that.srcMat = null;
+  }
+  if(_that.candyMat != null && _that.candyMat != 'undefined'){
+    _that.candyMat.delete();
+    _that.candyMat = null;
+  }
+  if(_that.grayMat != null && _that.grayMat != 'undefined'){
+    _that.grayMat.delete();
+    _that.grayMat = null;
+  }
+  if(_that.blackMat != null && _that.blackMat != 'undefined'){
+    _that.blackMat.delete();
+    _that.blackMat = null;
+  }
+  if(_that.dstMat != null && _that.dstMat != 'undefined'){
+    _that.dstMat.delete();
+    _that.dstMat = null;
+  }
+
+  _that.imageData = null;
+}
+
+function getPoints(points, positiveX, positiveY, centerX, centerY) {
   var newPoints = [];
   points.forEach(a => {
     if (a.x - centerX > 0 == positiveX && a.y - centerY > 0 == positiveY) {
@@ -109,7 +126,7 @@ async function getCanndy(_that) {
     var contourArea = cv.contourArea(contoursWithId[i].contour);
     //console.debug("contourArea: ", contourArea, ", canvasArea: ", canvasArea, ", i: ", i, ", contoursWithId.length: ", contoursWithId.length);
     if (contourArea > canvasArea * 0.95) {
-      //console.debug("deleting... contourArea: ", contourArea);
+      //console.debug("deleting... contourArea: %d, %: %2.2f", contourArea, contourArea/canvasArea);
       contoursWithId.splice(i, 1);
       i--;
     }
@@ -127,10 +144,10 @@ async function getCanndy(_that) {
 
   var centerX = _that.data.canvas1Width / 2;
   var centerY = _that.data.canvas1Height / 2;
-  _that.box.leftTopPoint = getPoints(points, false, false, centerX, centerY, _that);
-  _that.box.rightTopPoint = getPoints(points, true, false, centerX, centerY, _that);
-  _that.box.rightBottomPoint = getPoints(points, true, true, centerX, centerY, _that);
-  _that.box.leftBottomPoint = getPoints(points, false, true, centerX, centerY, _that);
+  _that.box.leftTopPoint = getPoints(points, false, false, centerX, centerY);
+  _that.box.rightTopPoint = getPoints(points, true, false, centerX, centerY);
+  _that.box.rightBottomPoint = getPoints(points, true, true, centerX, centerY);
+  _that.box.leftBottomPoint = getPoints(points, false, true, centerX, centerY);
 
 }
 
@@ -155,8 +172,25 @@ async function getTransform(_that) {
 
 // 创建图像对象
 async function createImageElement(_that, imgUrl) {
+  //clearMats(_that);
+  console.log("async function createImageElement", imgUrl);
+  // 拍完照片后，给主体区域显示出来
+  var imageInfo = await wx2sync.getImageInfoSync(imgUrl);
   console.log("async function createImageElement");
 
+  // get image data from canvas
+  var targetWidth = imageInfo.width * 1;
+  var x = imageInfo.width * 0.00;
+  var y = (imageInfo.height - targetWidth) / 2;
+  
+  var imageData = await getImageData(imgUrl, x, y, targetWidth, targetWidth);
+
+  _that.imageData = imageData;
+  return imageData;
+}
+
+// 获取图像数据和调整图像大小
+async function getImageData(imageUrl, targetX, targetY, targetWidth, targetHeight) {
   // 创建2d类型的离屏画布（需要微信基础库2.16.1以上）
   var offscreenCanvas = wx.createOffscreenCanvas({
     type: '2d'
@@ -165,54 +199,35 @@ async function createImageElement(_that, imgUrl) {
   await new Promise(function (resolve, reject) {
     image.onload = resolve
     image.onerror = reject
-    image.src = imgUrl
+    image.src = imageUrl
   })
-  // 拍完照片后，给主体区域显示出来
-  console.log("wx2sync.getImageInfoSync");
-  var imageInfo = await wx2sync.getImageInfoSync(imgUrl);
-  console.log("imageInfo", imageInfo);
-
-  const ctx = offscreenCanvas.getContext("2d");
-  ctx.drawImage(image, 0, 0, image.width, image.height);
-  _that.imageData = getImageData(image, offscreenCanvas);
-  console.log("_that.imageData set")
-}
-
-// 获取图像数据和调整图像大小
-function getImageData(image, offscreenCanvas) {
-  console.log("getImageData");
-  var _that = this
-  var canvasWidth = image.width;
-  if (canvasWidth > maxCanvasWidth) {
-    canvasWidth = maxCanvasWidth;
-  }
-  // canvas Height
-  var canvasHeight = Math.floor(canvasWidth * (image.height / image.width));
-
+    
   // 离屏画布的宽度和高度不能小于图像的
-  offscreenCanvas.width = canvasWidth;
-  offscreenCanvas.height = canvasHeight;
+  offscreenCanvas.width = image.width;
+  offscreenCanvas.height = image.height;
   // draw image on canvas
   ctx = offscreenCanvas.getContext('2d')
-  ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
-  console.log("ctx created");
-  // get image data from canvas
-  var imgData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+  ctx.drawImage(image, 0, 0, image.width, image.height);
+  console.log("offscreen canvas ctx created, width: %d, height: %d", image.width, image.height);
 
-  return imgData
+  var imageData = ctx.getImageData(targetX, targetY, targetWidth, targetHeight);
+  console.debug(imageData.width, imageData.height);
+
+  return imageData
 }
 
-function cropImageToSquare(mat) {
+function cropImageToSquare(_that, mat) {
   var width = mat.cols;
   var height = mat.rows;
-  var targetWidth = width * 0.8;
-  var x = width * 0.1;
+  //var targetWidth = width * 1;
+  var targetWidth = width * 1;
+  var x = width * 0.00;
   var y = (height - targetWidth) / 2;
 
   console.log("x: %d, y: %d, width: %d, height: %d, targetWidth: %d", x, y, width, height, targetWidth);
 
-  let dst = cv.Mat.zeros(mat.cols, mat.rows, cv.CV_8UC3);
-  let dsize = new cv.Size(mat.cols, mat.rows);
+  let dst = cv.Mat.zeros(targetWidth, targetWidth, cv.CV_8UC3);
+  let dsize = new cv.Size(targetWidth, targetWidth);
 
   let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [x, y, x + targetWidth, y, x, y + targetWidth, x + targetWidth, y + targetWidth]);
   let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, targetWidth, 0, 0, targetWidth, targetWidth, targetWidth]);
@@ -234,5 +249,6 @@ module.exports = {
   getCanndy: getCanndy,
   getTransform: getTransform,
   createImageElement: createImageElement,
-  cropImageToSquare: cropImageToSquare
+  cropImageToSquare: cropImageToSquare,
+  clearMats: clearMats
 }

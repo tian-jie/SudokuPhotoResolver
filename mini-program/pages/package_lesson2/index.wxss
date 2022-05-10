@@ -13,9 +13,41 @@
 }
 
 .visibleCanvas{
-    margin:auto;
+    width: 200rpx;
+    height: 200rpx;
+    /* border: 1px solid red; */
 }
 
-.inputImage{
-    width:375px;
+.photo-box{
+  float: right;
+  margin:50rpx 20rpx 20rpx 20rpx;
+  border: 1px solid black;
+}
+
+.sudoku-main{
+  margin: 20rpx;
+  width: 705rpx;
+  height: 705rpx;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.box0{
+  width: 232rpx;
+  height: 232rpx;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.grid0{
+  width: 74rpx;
+  height: 74rpx;
+  margin: 0 0 0 0;
+  text-align: center;
+  border: 1px solid green;
 }

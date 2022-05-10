@@ -1,5 +1,5 @@
 async function getImageInfoSync(imageUrl) {
-  return await new Promise(resolve => {
+  return await new Promise((resolve, reject) => {
     wx.getImageInfo({
       src: imageUrl,
       success: (res) => {

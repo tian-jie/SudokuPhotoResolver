@@ -30,8 +30,8 @@ Page({
 
 
   data: {
-    canvas1Width: 375,
-    canvas1Height: 150,
+    canvas1Width: 360,
+    canvas1Height: 360,
     // 示例图片
     sampleImage1Url: sampleImage1,
 
@@ -75,10 +75,11 @@ Page({
     var _that = this;
     await cvhelper.getCanndy(_that);
 
-    cv.line(this.srcMat, this.box.leftTopPoint, this.box.rightTopPoint, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
-    cv.line(this.srcMat, this.box.rightTopPoint, this.box.rightBottomPoint, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
-    cv.line(this.srcMat, this.box.rightBottomPoint, this.box.leftBottomPoint, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
-    cv.line(this.srcMat, this.box.leftBottomPoint, this.box.leftTopPoint, new cv.Scalar(255, 0, 0), 2, cv.LINE_AA, 0);
+    console.debug(this.box.rightBottomPoint);
+    cv.line(this.srcMat, this.box.leftTopPoint, this.box.rightTopPoint, new cv.Scalar(255, 0, 255), 2, cv.LINE_AA, 0);
+    cv.line(this.srcMat, this.box.rightTopPoint, this.box.rightBottomPoint, new cv.Scalar(255, 0, 255), 2, cv.LINE_AA, 0);
+    cv.line(this.srcMat, this.box.rightBottomPoint, this.box.leftBottomPoint, new cv.Scalar(255, 0, 255), 2, cv.LINE_AA, 0);
+    cv.line(this.srcMat, this.box.leftBottomPoint, this.box.leftTopPoint, new cv.Scalar(255, 0, 255), 2, cv.LINE_AA, 0);
     cv.imshow(_that.canvasDom, this.srcMat);
   },
 
@@ -89,7 +90,7 @@ Page({
     cv.imshow(_that.canvasDom, _that.dstMat);
 
   },
-  async btnRun5() {
+  async recognize() {
     var _that = this;
     // 将图片进行base64编码，发给服务器，由服务器进行识别
     wx.canvasToTempFilePath({
@@ -123,9 +124,20 @@ Page({
         console.error(res);
       }
     });
+
+    // 将图片裁剪为9x9一共81份，分别进行识别
+    // 如果某一个小块，有效区域的面积小于总面积的30%，并且中心点不在中心区域的话，则这个小块没有数字，不需要服务器识别。
+    // 发送给服务器的格式：认为有数字的块，给识别的有效区域重新截图，算出对应的base64编码，识别没有数字的小块，发送空字符串，减小服务器端的压力
+    /*
+      data: { 
+        base64Datas: [
+          "", "ddddd", "", "", "ddddd"......(81个)
+        ]
+      }
+    */
   },
 
-  async btnRun6() {
+  async takePhoto() {
     var _that = this;
     wx.showActionSheet({
       itemList: ['从相册选择', '拍照'],
@@ -141,6 +153,11 @@ Page({
         }
       }
     })
+  },
+  
+  async resolve(){
+    // 提交数字串，得到答案
+
   }
 });
 
@@ -154,16 +171,21 @@ async function chooseWxImage(_that, type) {
         sampleImage1Url: res.tempFilePaths[0],
       })
       sampleImage1 = res.tempFilePaths[0];
+      console.debug("createImageElement", sampleImage1);
 
       await cvhelper.createImageElement(_that, sampleImage1);
+      
       var srcMat = await cvhelper.getSrcMat(_that);
-      // 在这里裁剪后重新放到srcMat里
-      var newSrcMat = cvhelper.cropImageToSquare(srcMat);
-      console.log("await cvhelper.getSrcMat");
-      _that.srcMat = newSrcMat;
-      cv.imshow(_that.canvasDom, newSrcMat);
-      //srcMat.delete();
-      console.log("cv.imshow(_that.canvasDom, srcMat)");
+      console.debug("srcMat", srcMat);
+
+      cv.imshow(_that.canvasDom, srcMat);
+      // // 在这里裁剪后重新放到srcMat里
+      // var newSrcMat = cvhelper.cropImageToSquare(_that, srcMat);
+      // console.log("await cvhelper.getSrcMat");
+      // _that.srcMat = newSrcMat;
+      // cv.imshow(_that.canvasDom, newSrcMat);
+      // //srcMat.delete();
+      //console.log("cv.imshow(_that.canvasDom, srcMat)");
     }
   })
 }

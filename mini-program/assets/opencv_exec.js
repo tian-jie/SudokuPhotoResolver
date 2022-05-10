@@ -9636,14 +9636,12 @@
                         }
                 }
                 return mat
-            }
-                ;
+            };
             Module["matFromImageData"] = function (imageData) {
                 var mat = new cv.Mat(imageData.height, imageData.width, cv.CV_8UC4);
                 mat.data.set(imageData.data);
                 return mat
-            }
-                ;
+            };
 
             return cv
         }
