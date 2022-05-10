@@ -3,103 +3,103 @@
     <view class="weui-panel">
         <view class="sudoku-main">
             <view class="box0">
-              <text class="grid0">{{sudokuData[0]}}</text>
-              <text class="grid0">{{sudokuData[1]}}</text>
-              <text class="grid0">{{sudokuData[2]}}</text>
-              <text class="grid0">{{sudokuData[9]}}</text>
-              <text class="grid0">{{sudokuData[10]}}</text>
-              <text class="grid0">{{sudokuData[11]}}</text>
-              <text class="grid0">{{sudokuData[18]}}</text>
-              <text class="grid0">{{sudokuData[19]}}</text>
-              <text class="grid0">{{sudokuData[20]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[0].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[1].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[2].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[9].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[10].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[11].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[18].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[19].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[20].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[3]}}</text>
-              <text class="grid0">{{sudokuData[4]}}</text>
-              <text class="grid0">{{sudokuData[5]}}</text>
-              <text class="grid0">{{sudokuData[12]}}</text>
-              <text class="grid0">{{sudokuData[13]}}</text>
-              <text class="grid0">{{sudokuData[14]}}</text>
-              <text class="grid0">{{sudokuData[21]}}</text>
-              <text class="grid0">{{sudokuData[22]}}</text>
-              <text class="grid0">{{sudokuData[23]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[3].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[4].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[5].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[12].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[13].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[14].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[21].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[22].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[23].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[6]}}</text>
-              <text class="grid0">{{sudokuData[7]}}</text>
-              <text class="grid0">{{sudokuData[8]}}</text>
-              <text class="grid0">{{sudokuData[15]}}</text>
-              <text class="grid0">{{sudokuData[16]}}</text>
-              <text class="grid0">{{sudokuData[17]}}</text>
-              <text class="grid0">{{sudokuData[24]}}</text>
-              <text class="grid0">{{sudokuData[25]}}</text>
-              <text class="grid0">{{sudokuData[26]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[6].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[7].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[8].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[15].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[16].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[17].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[24].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[25].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[26].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[27]}}</text>
-              <text class="grid0">{{sudokuData[28]}}</text>
-              <text class="grid0">{{sudokuData[29]}}</text>
-              <text class="grid0">{{sudokuData[36]}}</text>
-              <text class="grid0">{{sudokuData[37]}}</text>
-              <text class="grid0">{{sudokuData[38]}}</text>
-              <text class="grid0">{{sudokuData[45]}}</text>
-              <text class="grid0">{{sudokuData[46]}}</text>
-              <text class="grid0">{{sudokuData[47]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[27].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[28].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[29].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[36].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[37].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[38].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[45].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[46].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[47].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[30]}}</text>
-              <text class="grid0">{{sudokuData[31]}}</text>
-              <text class="grid0">{{sudokuData[32]}}</text>
-              <text class="grid0">{{sudokuData[39]}}</text>
-              <text class="grid0">{{sudokuData[40]}}</text>
-              <text class="grid0">{{sudokuData[41]}}</text>
-              <text class="grid0">{{sudokuData[48]}}</text>
-              <text class="grid0">{{sudokuData[49]}}</text>
-              <text class="grid0">{{sudokuData[50]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[30].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[31].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[32].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[39].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[40].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[41].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[48].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[49].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[50].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[33]}}</text>
-              <text class="grid0">{{sudokuData[34]}}</text>
-              <text class="grid0">{{sudokuData[35]}}</text>
-              <text class="grid0">{{sudokuData[42]}}</text>
-              <text class="grid0">{{sudokuData[43]}}</text>
-              <text class="grid0">{{sudokuData[44]}}</text>
-              <text class="grid0">{{sudokuData[51]}}</text>
-              <text class="grid0">{{sudokuData[52]}}</text>
-              <text class="grid0">{{sudokuData[53]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[33].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[34].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[35].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[42].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[43].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[44].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[51].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[52].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[53].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[54]}}</text>
-              <text class="grid0">{{sudokuData[55]}}</text>
-              <text class="grid0">{{sudokuData[56]}}</text>
-              <text class="grid0">{{sudokuData[63]}}</text>
-              <text class="grid0">{{sudokuData[64]}}</text>
-              <text class="grid0">{{sudokuData[65]}}</text>
-              <text class="grid0">{{sudokuData[72]}}</text>
-              <text class="grid0">{{sudokuData[73]}}</text>
-              <text class="grid0">{{sudokuData[74]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[54].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[55].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[56].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[63].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[64].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[65].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[72].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[73].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[74].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[57]}}</text>
-              <text class="grid0">{{sudokuData[58]}}</text>
-              <text class="grid0">{{sudokuData[59]}}</text>
-              <text class="grid0">{{sudokuData[66]}}</text>
-              <text class="grid0">{{sudokuData[67]}}</text>
-              <text class="grid0">{{sudokuData[68]}}</text>
-              <text class="grid0">{{sudokuData[75]}}</text>
-              <text class="grid0">{{sudokuData[76]}}</text>
-              <text class="grid0">{{sudokuData[77]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[57].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[58].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[59].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[66].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[67].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[68].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[75].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[76].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[77].data}}</text>
             </view>
             <view class="box0">
-              <text class="grid0">{{sudokuData[60]}}</text>
-              <text class="grid0">{{sudokuData[61]}}</text>
-              <text class="grid0">{{sudokuData[62]}}</text>
-              <text class="grid0">{{sudokuData[69]}}</text>
-              <text class="grid0">{{sudokuData[70]}}</text>
-              <text class="grid0">{{sudokuData[71]}}</text>
-              <text class="grid0">{{sudokuData[78]}}</text>
-              <text class="grid0">{{sudokuData[79]}}</text>
-              <text class="grid0">{{sudokuData[80]}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[60].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[61].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[62].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[69].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[70].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[71].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[78].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[79].data}}</text>
+              <text class="{{sudokuData[0].isGiven?'grid0':'grid1'}}">{{sudokuData[80].data}}</text>
             </view>
 
           </view>
@@ -114,7 +114,7 @@
           <button bindtap="btnRun2" class="marginTop10" type="primary">黑白</button>
           <button bindtap="btnRun4" class="marginTop10" type="primary">透视变换</button>
           <button bindtap="recognize" class="marginTop10" type="primary">识别</button>
-          <button bindtap="resolve" class="marginTop10" type="primary">边缘检测</button>
+          <button bindtap="resolve" class="marginTop10" type="primary">求解</button>
         </view>
     </view>
   </view>

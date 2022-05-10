@@ -10,8 +10,10 @@ const url = "https://localhost:44357/SudokuResolver"
 global.wasm_url = '/assets/opencv3.4.16.wasm.br'
 // opencv_exec.js会从global.wasm_url获取wasm路径
 let cv = require('../../assets/opencv_exec.js');
-var cvhelper = require("../../utils/image-operation")
+let cvHelper = require("../../utils/image-operation")
 var ctx = null;
+
+var cvhelper = new cvHelper();
 
 Page({
   // 画布的dom对象
@@ -85,9 +87,9 @@ Page({
 
   async btnRun4() {
     var _that = this;
-    await cvhelper.getTransform(_that);
+    var mat = await cvhelper.getTransform(_that);
 
-    cv.imshow(_that.canvasDom, _that.dstMat);
+    cv.imshow(_that.canvasDom, mat);
 
   },
   async recognize() {
@@ -173,9 +175,9 @@ async function chooseWxImage(_that, type) {
       sampleImage1 = res.tempFilePaths[0];
       console.debug("createImageElement", sampleImage1);
 
-      await cvhelper.createImageElement(_that, sampleImage1);
+      await cvhelper.createImageElement(sampleImage1);
       
-      var srcMat = await cvhelper.getSrcMat(_that);
+      var srcMat = await cvhelper.getSrcMat();
       console.debug("srcMat", srcMat);
 
       cv.imshow(_that.canvasDom, srcMat);
