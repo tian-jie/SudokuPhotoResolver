@@ -1,21 +1,21 @@
 /**index.wxss**/
-.button-sp-area{
-    margin: 0 auto;
-    padding-top: 15px;
-    width: 60%;
-}
-.mini-btn{
-    margin-right: 5px;
-}
+
 .weui-panel__hd{
  font-weight:bold;
  color:#333;
 }
 
 .visibleCanvas{
-    width: 200rpx;
-    height: 200rpx;
-    /* border: 1px solid red; */
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.visibleCanvas1{
+  width: 40rpx;
+  height: 40rpx;
+  border: 1px solid red;
+  position: absolute;
+  right: -1110rpx;
 }
 
 .photo-box{
@@ -28,7 +28,7 @@
   margin: 20rpx;
   width: 705rpx;
   height: 705rpx;
-  border: 1px solid black;
+  border: 1rpx solid black;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -37,7 +37,7 @@
 .box0{
   width: 232rpx;
   height: 232rpx;
-  border: 1px solid black;
+  border: 1rpx solid black;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -49,7 +49,7 @@
   height: 74rpx;
   margin: 0 0 0 0;
   text-align: center;
-  border: 1px solid green;
+  border: 1rpx solid green;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,7 @@
   height: 74rpx;
   margin: 0 0 0 0;
   text-align: center;
-  border: 1px solid green;
+  border: 1rpx solid green;
   color: red;
   display: flex;
   align-items: center;

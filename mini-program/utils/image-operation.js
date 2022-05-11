@@ -44,13 +44,10 @@ module.exports = class cvhelper {
         if (this.srcMat == null) {
             this.srcMat = new cv.Mat();
             this.srcMat = cv.imread(this.imageData);
-            console.debug("cv.imread");
 
             // 设置画布的显示大小
             this.canvas1Width = this.imageData.width;
             this.canvas1Height = this.imageData.height;
-
-            console.debug("canvas1Width: %d, canvas1Height: %d", this.imageData.width, this.imageData.height);
         }
         return this.srcMat;
     }
@@ -175,7 +172,6 @@ module.exports = class cvhelper {
     // 创建图像对象
     async createImageElement(imgUrl, canvasDom) {
         this.canvasDom = canvasDom;
-        console.log("async function createImageElement", imgUrl);
         await this.clearMats();
         // 拍完照片后，给主体区域显示出来
         var imageInfo = await wx2sync.getImageInfoSync(imgUrl);
@@ -210,10 +206,8 @@ module.exports = class cvhelper {
         // draw image on canvas
         var ctx = offscreenCanvas.getContext('2d')
         ctx.drawImage(image, 0, 0, image.width, image.height);
-        console.log("offscreen canvas ctx created, width: %d, height: %d", image.width, image.height);
 
         var imageData = ctx.getImageData(targetX, targetY, targetWidth, targetHeight);
-        console.debug(imageData.width, imageData.height);
 
         return imageData
     }
@@ -246,18 +240,12 @@ module.exports = class cvhelper {
 
     async getBoundingRect(canvas) {
         // 记得即使没有也要返回一个空rect
-        console.debug(canvas);
         var imageData = canvas.getImageData(0, 0, canvas.width, canvas.height);
-        console.debug("imageData: ", imageData);
         var mat = cv.imread(imageData);
-        console.debug("mat: ", mat);
         // 查找轮廓
-        console.debug("0");
         var canvas2 = await wx2sync.createSelectorQuery("canvas2");
-        console.debug(canvas2);
         //var canvas2Context = canvas2.getContext("2d");
         cv.imshow(canvas2, mat);
-        console.debug("1");
 
         let canndyMat = new cv.Mat();
         cv.Canny(mat, canndyMat, 50, 100, 3, false);
@@ -271,7 +259,6 @@ module.exports = class cvhelper {
         let hierarchy = new cv.Mat();
         let contourVector = new cv.MatVector();
         cv.findContours(canndyMat, contourVector, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
-        console.debug("2");
 
         var contours = [];
         var contoursWithId = [];
@@ -284,13 +271,11 @@ module.exports = class cvhelper {
             contours.push(contour);
         }
 
-        console.debug("3");
         // 轮廓排序
         contoursWithId.sort(function (a, b) {
             return cv.contourArea(b.contour) - cv.contourArea(a.contour);
         });
 
-        console.debug("4");
         var canvasArea = this.canvas1Width * this.canvas1Height;
         for (var i = 0; i < contoursWithId.length; i++) {
             var contourArea = cv.contourArea(contoursWithId[i].contour);
@@ -301,13 +286,11 @@ module.exports = class cvhelper {
                 i--;
             }
         }
-        console.debug("5");
 
         if (contoursWithId.length == 0) {
-            console.debug("6.1");
-            return new cv.rect(0, 0, 0, 0);
+            console.debug("no contour found");
+            return new cv.Rect(0, 0, 0, 0);
         }
-        console.debug("6");
         var mainContour = contoursWithId[0];
 
         var points = [];
