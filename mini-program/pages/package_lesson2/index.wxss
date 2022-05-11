@@ -50,4 +50,21 @@
   margin: 0 0 0 0;
   text-align: center;
   border: 1px solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.grid1{
+  width: 74rpx;
+  height: 74rpx;
+  margin: 0 0 0 0;
+  text-align: center;
+  border: 1px solid green;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
 }

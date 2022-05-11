@@ -106,6 +106,7 @@
         <view>
           <view class="photo-box">
             <canvas id="canvas1" type="2d" class="visibleCanvas"></canvas>
+            <canvas id="canvas2" type="2d" class="visibleCanvas"></canvas>
           </view>
         </view>
         <view class="weui-media-box">
