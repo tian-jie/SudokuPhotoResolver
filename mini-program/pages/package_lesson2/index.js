@@ -5,8 +5,8 @@ var sampleImage1 = '/assets/1.jpg'
 var wx2sync = require("../../utils/wx2sync.js")
 
 //const url = "http://192.168.1.35:5000/SudokuResolver"
-const recognizeUrl = "https://localhost:44357/ScanSudoku"
-const resolveUrl = "https://localhost:44357/ResolveSudoku"
+const recognizeUrl = "http://sudoku-resolver.zainot.com/ScanSudoku"
+const resolveUrl = "http://sudoku-resolver.zainot.com/ResolveSudoku"
 
 // wasm路径
 global.wasm_url = '/assets/opencv3.4.16.wasm.br'
@@ -135,13 +135,17 @@ Page({
     let data1 = this.data.sudokuData;
     let data2 = [];
     data1.forEach((item) => {
-      data2.push(item.data == "" ? 0 : item.data);
+      data2.push(item.isGiven? item.data : 0);
     });
     var result = await wx2sync.request(resolveUrl, { numbers: data2 });
+    if(!result.hasResult){
+      wx.showToast({title: '无解！'});
+      return;
+    }
     var data = this.data.sudokuData;
     for (var i = 0; i < 81; i++) {
       if (!data[i].isGiven) {
-        data[i].data = result[i];
+        data[i].data = result.numbers[i];
       }
     }
     this.setData({ sudokuData: data });
