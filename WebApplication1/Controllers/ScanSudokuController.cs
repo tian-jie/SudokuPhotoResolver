@@ -11,18 +11,17 @@ namespace WebApplication1.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SudokuResolverController : ControllerBase
+    public class ScanSudokuController : ControllerBase
     {
-        private readonly ILogger<SudokuResolverController> _logger;
+        private readonly ILogger<ScanSudokuController> _logger;
 
-        public SudokuResolverController(ILogger<SudokuResolverController> logger)
+        public ScanSudokuController(ILogger<ScanSudokuController> logger)
         {
             _logger = logger;
         }
 
         [HttpPost]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
-        public IEnumerable<int> Post(RequestData requestData)
+        public IEnumerable<int> Post(ScanSudokuRequestData requestData)
         {
             return ScanSudoku(requestData.base64Datas);
         }
@@ -31,28 +30,7 @@ namespace WebApplication1.Controllers
         protected List<int> ScanSudoku(List<string> ss)
         {
             var numbers = new List<int>();
-            var gridWidth = 40;
-            var gridHeight = 40;
-
-            //// Fast Dictionary
-            //Ocr.Language = OcrLanguage.EnglishFast;
-
-            //// Latest Engine 
-            //Ocr.Configuration.TesseractVersion = TesseractVersion.Tesseract5;
-
-            ////AI OCR only without font analysis
-            //Ocr.Configuration.EngineMode = TesseractEngineMode.LstmOnly;
-
-            ////Turn off unneeded options
-            //Ocr.Configuration.ReadBarCodes = false;
-            //Ocr.Configuration.RenderSearchablePdfsAndHocr = false;
-
-            // Assume text is laid out neatly in an orthagonal document
-            //Ocr.Configuration.PageSegmentationMode = TesseractPageSegmentationMode.Auto;
-
-
-            // 对blackMat裁剪9x9
-
+  
             using (var engine = new TesseractEngine(System.AppDomain.CurrentDomain.BaseDirectory + "tessdata", "digits", EngineMode.Default))
             {
                 engine.DefaultPageSegMode = PageSegMode.SingleChar;
@@ -119,9 +97,11 @@ namespace WebApplication1.Controllers
             }
 
         }
+
+
     }
 
-    public class RequestData
+    public class ScanSudokuRequestData
     {
         public List<string> base64Datas { get; set; }
     }

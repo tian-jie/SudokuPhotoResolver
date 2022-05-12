@@ -1,0 +1,4 @@
+bin
+obj
+.vs
+WebApplication1/WebApplication1.csproj.user
