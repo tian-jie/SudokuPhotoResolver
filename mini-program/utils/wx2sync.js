@@ -87,16 +87,25 @@ async function chooseImage(_that, type, sizeType = ['original', 'compressed'], c
     });
 }
 
-async function takePhoto(photoContext) {
+async function takePhoto(cameraContext) {
+    console.debug("taking photo");
+
     return await new Promise((resolve, reject) => {
-        photoContext.takePhoto({
-            quality: 'high', //高质量
-            success: (res) => {
-              console.debug(res.tempFilePath);
+        console.debug("cameraContext created: ", cameraContext);
+
+        cameraContext.takePhoto({
+            quality: "high",
+            success: function (res) {
+                console.debug("take photo: ", res);
+
                 resolve(res.tempImagePath);
             },
             fail: (res) => {
+                console.debug("take photo failed: ", res);
                 reject(res);
+            },
+            complete: (res) => {
+                console.debug("take photo complete: ", res)
             }
         });
     });
@@ -106,7 +115,7 @@ async function authorize(scope) {
     await new Promise((resolve, reject) => {
         wx.authorize({
             scope: 'scope.camera',
-            success: function (res) { 
+            success: function (res) {
                 resolve(res);
             },
             fail: function (res) {
@@ -116,20 +125,20 @@ async function authorize(scope) {
     });
 }
 
-async function openSetting(){
+async function openSetting() {
     await new Promise((resolve, reject) => {
         wx.openSetting({
             success: function (res) {
                 resolve(res);
             },
-            fail: function(res) {
+            fail: function (res) {
                 reject(res);
             }
         });
     });
 }
 
-async function showModel(title, content, confirmText, cancelText){
+async function showModel(title, content, confirmText, cancelText) {
     await new Promise((resolve, reject) => {
         wx.showModal({
             title: "请授权您的摄像头",
@@ -137,6 +146,14 @@ async function showModel(title, content, confirmText, cancelText){
             confirmText: "确认，去同意授权",
             cancelText: "不了，我换个用法",
         })
+    });
+}
+
+async function sleep(ms){
+    await Promise((resolve) => {
+        setTimeout(()=>{
+            resolve();
+        }, 100);
     });
 }
 
@@ -149,5 +166,6 @@ module.exports = {
     chooseImage: chooseImage,
     authorize: authorize,
     openSetting: openSetting,
-    takePhoto: takePhoto
+    takePhoto: takePhoto,
+    sleep: sleep
 }
