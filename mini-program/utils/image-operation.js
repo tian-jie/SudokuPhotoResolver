@@ -4,21 +4,22 @@ const maxCanvasWidth = 375
 let cv = require('../assets/opencv_exec.js');
 
 module.exports = class cvhelper {
-    srcMat = null;
-    grayMat = null;
-    blackMat = null;
-    canndyMat = null;
-    imageData = null;
-    canvas1Width = 360;
-    canvas1Height = 360;
-    canvasDom = null;
-    box = {
-        leftTopPoint: null,
-        leftBottomPoint: null,
-        rightTopPoint: null,
-        rightBottomPoint: null
-    };
-    constructor() { }
+    constructor() { 
+        this.srcMat = null;
+        this.grayMat = null;
+        this.blackMat = null;
+        this.canndyMat = null;
+        this.imageData = null;
+        this.canvas1Width = 360;
+        this.canvas1Height = 360;
+        this.canvasDom = null;
+        this.box = {
+            leftTopPoint: null,
+            leftBottomPoint: null,
+            rightTopPoint: null,
+            rightBottomPoint: null
+        };
+    }
 
     async getGrayMat() {
         if (this.grayMat == null) {
@@ -177,9 +178,10 @@ module.exports = class cvhelper {
         var imageInfo = await wx2sync.getImageInfoSync(imgUrl);
 
         // get image data from canvas
+        // target width: 750
         var targetWidth = imageInfo.width * 1;
         var x = imageInfo.width * 0.00;
-        var y = (imageInfo.height - targetWidth) / 2;
+        var y = imageInfo.width * 268.0 / 750;
 
         var imageData = await this.getImageData(imgUrl, x, y, targetWidth, targetWidth);
 

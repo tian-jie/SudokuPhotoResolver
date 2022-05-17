@@ -68,3 +68,31 @@
   justify-content: center;
   font-size: x-large;
 }
+
+.cancel-take-photo-btn{
+  width: 80rpx;
+  height: 80rpx;
+  left: 100rpx;
+  bottom: 250rpx;
+  position: absolute;
+}
+.take-photo-btn{
+  width: 200rpx;
+  height: 200rpx;
+  left: 280rpx;
+  bottom: 150rpx;
+  position: absolute;
+}
+.switch-camera-btn{
+  width: 80rpx;
+  height: 80rpx;
+  right: 100rpx;
+  bottom: 250rpx;
+  position: absolute;
+}
+
+.take-photo-area{
+  background: rgba(171, 170, 170, 0.7);
+  height: 800rpx;
+  
+}

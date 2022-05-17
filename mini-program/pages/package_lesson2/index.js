@@ -13,6 +13,7 @@ global.wasm_url = '/assets/opencv3.4.16.wasm.br'
 // opencv_exec.js会从global.wasm_url获取wasm路径
 let cv = require('../../assets/opencv_exec.js');
 let cvHelper = require("../../utils/image-operation")
+const { takePhoto } = require("../../utils/wx2sync.js")
 var ctx = null;
 
 var cvhelper = new cvHelper();
@@ -25,6 +26,9 @@ Page({
   blackMat: null,
   imageData: null,
   dstMat: null,
+  isTakePhoto: false,
+  cameraContext: null,
+  cameraPos: "back",
   box: {
     leftTopPoint: null,
     leftBottomPoint: null,
@@ -43,6 +47,7 @@ Page({
     // 可见的画布
     this.initCanvas(canvas1);
 
+    this.cameraContext = wx.createCameraContext();
     // var sudokuData = [];
     // for (var i = 0; i < 81; i++) {
     //   sudokuData.push({
@@ -111,35 +116,52 @@ Page({
     recognize(this);
   },
 
-  async takePhoto() {
+  async choosePhoto() {
     var _that = this;
     wx.showActionSheet({
       itemList: ['从相册选择', '拍照'],
       itemColor: "#CED63A",
       success: async function (res) {
-        var imagePath = "";
         if (!res.cancel) {
           if (res.tapIndex == 0) {
             imagePath = chooseWxImage(_that, 'album')
           } else if (res.tapIndex == 1) {
-            imagePath = chooseWxImage(_that, 'camera')
+            _that.setData({ isTakePhoto: true });
+            if (!await authorizeCamera(_that)) {
+              return;
+            }
           }
         }
       }
     })
   },
 
+  async takePhoto() {
+    await takePhotoDirectly(this, this.cameraContext);
+  },
+
+  async cancelTakePhoto() {
+    this.setData({ isTakePhoto: false });
+  },
+
+  // 相机前后镜头转换
+  changePos() {
+    this.setData({
+      cameraPos: this.data.cameraPos == "back" ? "front" : "back"
+    })
+  },
+
   async resolve() {
     // 提交数字串，得到答案
-    wx.showLoading({title: '求解中，请稍候...', mask: true});
+    wx.showLoading({ title: '求解中，请稍候...', mask: true });
     let data1 = this.data.sudokuData;
     let data2 = [];
     data1.forEach((item) => {
-      data2.push(item.isGiven? item.data : 0);
+      data2.push(item.isGiven ? item.data : 0);
     });
     var result = await wx2sync.request(resolveUrl, { numbers: data2 });
-    if(!result.hasResult){
-      wx.showToast({title: '无解！'});
+    if (!result.hasResult) {
+      wx.showToast({ title: '无解！' });
       return;
     }
     var data = this.data.sudokuData;
@@ -155,8 +177,17 @@ Page({
 });
 
 async function chooseWxImage(_that, type) {
-  var filepath = await wx2sync.chooseImage(type);
-  wx.showLoading({title: '识别中，请稍候...', mask: true});
+  _that.setData({ isTakePhoto: true });
+  try {
+    var filepath = await wx2sync.chooseImage(_that, type);
+  } catch (ex) {
+    _that.setData({ isTakePhoto: false });
+    console.debug(ex);
+    return;
+  }
+  console.debug("finished photo")
+
+  wx.showLoading({ title: '识别中，请稍候...', mask: true });
 
   _that.setData({
     sampleImage1Url: filepath,
@@ -168,9 +199,78 @@ async function chooseWxImage(_that, type) {
   var dstMat = await cvhelper.getTransform();
   cv.imshow(_that.canvasDom, dstMat);
 
-  
+
   await recognize(_that);
   wx.hideLoading();
+}
+
+async function takePhotoDirectly(_that, cameraContext) {
+  _that.setData({ isTakePhoto: false });
+  try {
+    // 拍照
+    var photoFilepath = await wx2sync.takePhoto(cameraContext);
+    wx.showLoading({ title: '识别中，请稍候...', mask: true });
+
+    _that.setData({
+      sampleImage1Url: photoFilepath,
+    })
+    sampleImage1 = photoFilepath;
+
+    await cvhelper.createImageElement(sampleImage1);
+    var srcMat = await cvhelper.getSrcMat();
+    var dstMat = await cvhelper.getTransform();
+    cv.imshow(_that.canvasDom, dstMat);
+
+
+    await recognize(_that);
+    wx.hideLoading();
+  } catch (ex) {
+    console.error(ex);
+  }
+}
+
+async function authorizeCamera(_that) {
+  // 相机授权
+  try {
+    await wx2sync.authorize("scope.camera");
+  } catch (ex) {
+    try {
+      var modelResult = await wx2sync.showModel("请授权您的摄像头", "如需要拍照识别，授权同意使用您的摄像头", "确认，去同意授权", "不了，我换个用法");
+      if (modelResult.confirm) {
+      } else { //取消
+        wx.showToast({
+          title: '授权失败',
+          icon: 'none',
+          duration: 1000
+        });
+        return false;
+      }
+
+      var setting = await wx2sync.openSetting();
+      if (setting.authSetting['scope.camera']) {
+        wx.showToast({
+          title: '授权成功',
+          icon: 'success',
+          duration: 600
+        });
+      } else {
+        wx.showToast({
+          title: '授权失败',
+          icon: 'none',
+          duration: 1000
+        });
+        return false;
+      }
+      return true;
+    } catch (ex2) {
+      wx.showToast({
+        title: '授权被取消',
+        icon: 'none',
+        duration: 1000
+      });
+      return false;
+    }
+  }
 }
 
 async function recognize(_that) {
