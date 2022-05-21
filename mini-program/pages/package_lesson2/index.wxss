@@ -53,7 +53,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: red;
+  font-size: x-large;
 }
 
 .grid1{
@@ -62,7 +63,7 @@
   margin: 0 0 0 0;
   text-align: center;
   border: 1rpx solid green;
-  color: red;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,4 +96,12 @@
   background: rgba(171, 170, 170, 0.7);
   height: 800rpx;
   
+}
+
+.box-fill{
+  background-color: skyblue;
+}
+
+.box-black{
+  background-color: snow;
 }

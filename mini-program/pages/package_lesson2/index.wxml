@@ -3,103 +3,191 @@
     <view class="weui-panel">
       <view class="sudoku-main">
         <view class="box0">
-          <text class="{{sudokuData[0].isGiven?'grid1':'grid0'}}">{{sudokuData[0].data}}</text>
-          <text class="{{sudokuData[1].isGiven?'grid1':'grid0'}}">{{sudokuData[1].data}}</text>
-          <text class="{{sudokuData[2].isGiven?'grid1':'grid0'}}">{{sudokuData[2].data}}</text>
-          <text class="{{sudokuData[9].isGiven?'grid1':'grid0'}}">{{sudokuData[9].data}}</text>
-          <text class="{{sudokuData[10].isGiven?'grid1':'grid0'}}">{{sudokuData[10].data}}</text>
-          <text class="{{sudokuData[11].isGiven?'grid1':'grid0'}}">{{sudokuData[11].data}}</text>
-          <text class="{{sudokuData[18].isGiven?'grid1':'grid0'}}">{{sudokuData[18].data}}</text>
-          <text class="{{sudokuData[19].isGiven?'grid1':'grid0'}}">{{sudokuData[19].data}}</text>
-          <text class="{{sudokuData[20].isGiven?'grid1':'grid0'}}">{{sudokuData[20].data}}</text>
+          <text wx:if="{{!gridChoosed[0]}}" data-boxid="{{0}}"  bindtap="chooseGrid" class="{{sudokuData[0].isGiven?'grid1':'grid0'}}">{{sudokuData[0].data}}</text>
+          <input wx:if="{{gridChoosed[0]}}" bindinput="bindHideKeyboard" data-boxid="{{0}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[0].data}}</input>
+          <text wx:if="{{!gridChoosed[1]}}" data-boxid="{{1}}"  bindtap="chooseGrid" class="{{sudokuData[1].isGiven?'grid1':'grid0'}}">{{sudokuData[1].data}}</text>
+          <input wx:if="{{gridChoosed[1]}}" bindinput="bindHideKeyboard" data-boxid="{{1}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[1].data}}</input>
+          <text wx:if="{{!gridChoosed[2]}}" data-boxid="{{2}}"  bindtap="chooseGrid" class="{{sudokuData[12].isGiven?'grid1':'grid0'}}">{{sudokuData[2].data}}</text>
+          <input wx:if="{{gridChoosed[2]}}" bindinput="bindHideKeyboard" data-boxid="{{2}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[2].data}}</input>
+          
+          <text wx:if="{{!gridChoosed[9]}}" data-boxid="{{9}}"  bindtap="chooseGrid" class="{{sudokuData[9].isGiven?'grid1':'grid0'}}">{{sudokuData[9].data}}</text>
+          <input wx:if="{{gridChoosed[9]}}" bindinput="bindHideKeyboard" data-boxid="{{9}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[9].data}}</input>
+          <text wx:if="{{!gridChoosed[10]}}" data-boxid="{{10}}"  bindtap="chooseGrid" class="{{sudokuData[10].isGiven?'grid1':'grid0'}}">{{sudokuData[10].data}}</text>
+          <input wx:if="{{gridChoosed[10]}}" bindinput="bindHideKeyboard" data-boxid="{{10}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[10].data}}</input>
+          <text wx:if="{{!gridChoosed[11]}}" data-boxid="{{11}}"  bindtap="chooseGrid" class="{{sudokuData[11].isGiven?'grid1':'grid0'}}">{{sudokuData[11].data}}</text>
+          <input wx:if="{{gridChoosed[11]}}" bindinput="bindHideKeyboard"  data-boxid="{{11}}"bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[11].data}}</input>
+          
+          <text wx:if="{{!gridChoosed[18]}}" data-boxid="{{18}}"  bindtap="chooseGrid" class="{{(sudokuData[18].isGiven)?'grid1':'grid0'}}">{{sudokuData[18].data}}</text>
+          <input wx:if="{{gridChoosed[18]}}" bindinput="bindHideKeyboard" data-boxid="{{18}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[18].data}}</input>
+          <text wx:if="{{!gridChoosed[19]}}" data-boxid="{{19}}"  bindtap="chooseGrid" class="{{sudokuData[19].isGiven?'grid1':'grid0'}}">{{sudokuData[19].data}}</text>
+          <input wx:if="{{gridChoosed[19]}}" bindinput="bindHideKeyboard" data-boxid="{{19}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[19].data}}</input>
+          <text wx:if="{{!gridChoosed[20]}}" data-boxid="{{20}}"  bindtap="chooseGrid" class="{{sudokuData[20].isGiven?'grid1':'grid0'}}">{{sudokuData[20].data}}</text>
+          <input wx:if="{{gridChoosed[20]}}" bindinput="bindHideKeyboard" data-boxid="{{20}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[20].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[3].isGiven?'grid1':'grid0'}}">{{sudokuData[3].data}}</text>
-          <text class="{{sudokuData[4].isGiven?'grid1':'grid0'}}">{{sudokuData[4].data}}</text>
-          <text class="{{sudokuData[5].isGiven?'grid1':'grid0'}}">{{sudokuData[5].data}}</text>
-          <text class="{{sudokuData[12].isGiven?'grid1':'grid0'}}">{{sudokuData[12].data}}</text>
-          <text class="{{sudokuData[13].isGiven?'grid1':'grid0'}}">{{sudokuData[13].data}}</text>
-          <text class="{{sudokuData[14].isGiven?'grid1':'grid0'}}">{{sudokuData[14].data}}</text>
-          <text class="{{sudokuData[21].isGiven?'grid1':'grid0'}}">{{sudokuData[21].data}}</text>
-          <text class="{{sudokuData[22].isGiven?'grid1':'grid0'}}">{{sudokuData[22].data}}</text>
-          <text class="{{sudokuData[23].isGiven?'grid1':'grid0'}}">{{sudokuData[23].data}}</text>
+          <text wx:if="{{!gridChoosed[3]}}" data-boxid="{{3}}"  bindtap="chooseGrid" class="{{(sudokuData[3].isGiven)?'grid1':'grid0'}}">{{sudokuData[3].data}}</text>
+          <input wx:if="{{gridChoosed[3]}}" bindinput="bindHideKeyboard" data-boxid="{{3}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[3].data}}</input>
+          <text wx:if="{{!gridChoosed[4]}}" data-boxid="{{4}}"  bindtap="chooseGrid" class="{{(sudokuData[4].isGiven)?'grid1':'grid0'}}">{{sudokuData[4].data}}</text>
+          <input wx:if="{{gridChoosed[4]}}" bindinput="bindHideKeyboard" data-boxid="{{4}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[4].data}}</input>
+          <text wx:if="{{!gridChoosed[5]}}" data-boxid="{{5}}"  bindtap="chooseGrid" class="{{(sudokuData[5].isGiven)?'grid1':'grid0'}}">{{sudokuData[5].data}}</text>
+          <input wx:if="{{gridChoosed[5]}}" bindinput="bindHideKeyboard" data-boxid="{{5}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[5].data}}</input>
+
+          <text wx:if="{{!gridChoosed[12]}}" data-boxid="{{12}}"  bindtap="chooseGrid" class="{{(sudokuData[12].isGiven)?'grid1':'grid0'}}">{{sudokuData[12].data}}</text>
+          <input wx:if="{{gridChoosed[12]}}" bindinput="bindHideKeyboard" data-boxid="{{12}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[12].data}}</input>
+          <text wx:if="{{!gridChoosed[13]}}" data-boxid="{{13}}"  bindtap="chooseGrid" class="{{(sudokuData[13].isGiven)?'grid1':'grid0'}}">{{sudokuData[13].data}}</text>
+          <input wx:if="{{gridChoosed[13]}}" bindinput="bindHideKeyboard" data-boxid="{{13}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[13].data}}</input>
+          <text wx:if="{{!gridChoosed[14]}}" data-boxid="{{14}}"  bindtap="chooseGrid" class="{{(sudokuData[14].isGiven)?'grid1':'grid0'}}">{{sudokuData[14].data}}</text>
+          <input wx:if="{{gridChoosed[14]}}" bindinput="bindHideKeyboard" data-boxid="{{14}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[14].data}}</input>
+
+          <text wx:if="{{!gridChoosed[21]}}" data-boxid="{{21}}"  bindtap="chooseGrid" class="{{(sudokuData[21].isGiven)?'grid1':'grid0'}}">{{sudokuData[21].data}}</text>
+          <input wx:if="{{gridChoosed[21]}}" bindinput="bindHideKeyboard" data-boxid="{{21}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[21].data}}</input>
+          <text wx:if="{{!gridChoosed[22]}}" data-boxid="{{22}}"  bindtap="chooseGrid" class="{{(sudokuData[22].isGiven)?'grid1':'grid0'}}">{{sudokuData[22].data}}</text>
+          <input wx:if="{{gridChoosed[22]}}" bindinput="bindHideKeyboard" data-boxid="{{22}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[22].data}}</input>
+          <text wx:if="{{!gridChoosed[23]}}" data-boxid="{{23}}"  bindtap="chooseGrid" class="{{(sudokuData[23].isGiven)?'grid1':'grid0'}}">{{sudokuData[23].data}}</text>
+          <input wx:if="{{gridChoosed[23]}}" bindinput="bindHideKeyboard" data-boxid="{{23}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[23].data}}</input>
+
         </view>
         <view class="box0">
-          <text class="{{sudokuData[6].isGiven?'grid1':'grid0'}}">{{sudokuData[6].data}}</text>
-          <text class="{{sudokuData[7].isGiven?'grid1':'grid0'}}">{{sudokuData[7].data}}</text>
-          <text class="{{sudokuData[8].isGiven?'grid1':'grid0'}}">{{sudokuData[8].data}}</text>
-          <text class="{{sudokuData[15].isGiven?'grid1':'grid0'}}">{{sudokuData[15].data}}</text>
-          <text class="{{sudokuData[16].isGiven?'grid1':'grid0'}}">{{sudokuData[16].data}}</text>
-          <text class="{{sudokuData[17].isGiven?'grid1':'grid0'}}">{{sudokuData[17].data}}</text>
-          <text class="{{sudokuData[24].isGiven?'grid1':'grid0'}}">{{sudokuData[24].data}}</text>
-          <text class="{{sudokuData[25].isGiven?'grid1':'grid0'}}">{{sudokuData[25].data}}</text>
-          <text class="{{sudokuData[26].isGiven?'grid1':'grid0'}}">{{sudokuData[26].data}}</text>
+          <text wx:if="{{!gridChoosed[6]}}" data-boxid="{{6}}"  bindtap="chooseGrid" class="{{(sudokuData[6].isGiven)?'grid1':'grid0'}}">{{sudokuData[6].data}}</text>
+          <input wx:if="{{gridChoosed[6]}}" bindinput="bindHideKeyboard" data-boxid="{{6}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[6].data}}</input>
+          <text wx:if="{{!gridChoosed[7]}}" data-boxid="{{7}}"  bindtap="chooseGrid" class="{{(sudokuData[7].isGiven)?'grid1':'grid0'}}">{{sudokuData[7].data}}</text>
+          <input wx:if="{{gridChoosed[7]}}" bindinput="bindHideKeyboard" data-boxid="{{7}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[7].data}}</input>
+          <text wx:if="{{!gridChoosed[8]}}" data-boxid="{{8}}"  bindtap="chooseGrid" class="{{(sudokuData[8].isGiven)?'grid1':'grid0'}}">{{sudokuData[8].data}}</text>
+          <input wx:if="{{gridChoosed[8]}}" bindinput="bindHideKeyboard" data-boxid="{{8}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[8].data}}</input>
+
+          <text wx:if="{{!gridChoosed[15]}}" data-boxid="{{15}}"  bindtap="chooseGrid" class="{{(sudokuData[15].isGiven)?'grid1':'grid0'}}">{{sudokuData[15].data}}</text>
+          <input wx:if="{{gridChoosed[15]}}" bindinput="bindHideKeyboard" data-boxid="{{15}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[15].data}}</input>
+          <text wx:if="{{!gridChoosed[16]}}" data-boxid="{{16}}"  bindtap="chooseGrid" class="{{(sudokuData[16].isGiven)?'grid1':'grid0'}}">{{sudokuData[16].data}}</text>
+          <input wx:if="{{gridChoosed[16]}}" bindinput="bindHideKeyboard" data-boxid="{{16}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[16].data}}</input>
+          <text wx:if="{{!gridChoosed[17]}}" data-boxid="{{17}}"  bindtap="chooseGrid" class="{{(sudokuData[17].isGiven)?'grid1':'grid0'}}">{{sudokuData[17].data}}</text>
+          <input wx:if="{{gridChoosed[17]}}" bindinput="bindHideKeyboard" data-boxid="{{17}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[17].data}}</input>
+
+          <text wx:if="{{!gridChoosed[24]}}" data-boxid="{{24}}"  bindtap="chooseGrid" class="{{(sudokuData[24].isGiven)?'grid1':'grid0'}}">{{sudokuData[24].data}}</text>
+          <input wx:if="{{gridChoosed[24]}}" bindinput="bindHideKeyboard" data-boxid="{{24}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[24].data}}</input>
+          <text wx:if="{{!gridChoosed[25]}}" data-boxid="{{25}}"  bindtap="chooseGrid" class="{{(sudokuData[25].isGiven)?'grid1':'grid0'}}">{{sudokuData[25].data}}</text>
+          <input wx:if="{{gridChoosed[25]}}" bindinput="bindHideKeyboard" data-boxid="{{25}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[25].data}}</input>
+          <text wx:if="{{!gridChoosed[26]}}" data-boxid="{{26}}"  bindtap="chooseGrid" class="{{(sudokuData[26].isGiven)?'grid1':'grid0'}}">{{sudokuData[26].data}}</text>
+          <input wx:if="{{gridChoosed[26]}}" bindinput="bindHideKeyboard" data-boxid="{{26}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[26].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[27].isGiven?'grid1':'grid0'}}">{{sudokuData[27].data}}</text>
-          <text class="{{sudokuData[28].isGiven?'grid1':'grid0'}}">{{sudokuData[28].data}}</text>
-          <text class="{{sudokuData[29].isGiven?'grid1':'grid0'}}">{{sudokuData[29].data}}</text>
-          <text class="{{sudokuData[36].isGiven?'grid1':'grid0'}}">{{sudokuData[36].data}}</text>
-          <text class="{{sudokuData[37].isGiven?'grid1':'grid0'}}">{{sudokuData[37].data}}</text>
-          <text class="{{sudokuData[38].isGiven?'grid1':'grid0'}}">{{sudokuData[38].data}}</text>
-          <text class="{{sudokuData[45].isGiven?'grid1':'grid0'}}">{{sudokuData[45].data}}</text>
-          <text class="{{sudokuData[46].isGiven?'grid1':'grid0'}}">{{sudokuData[46].data}}</text>
-          <text class="{{sudokuData[47].isGiven?'grid1':'grid0'}}">{{sudokuData[47].data}}</text>
+          <text wx:if="{{!gridChoosed[27]}}" data-boxid="{{27}}"  bindtap="chooseGrid" class="{{(sudokuData[27].isGiven)?'grid1':'grid0'}}">{{sudokuData[27].data}}</text>
+          <input wx:if="{{gridChoosed[27]}}" bindinput="bindHideKeyboard" data-boxid="{{27}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[27].data}}</input>
+          <text wx:if="{{!gridChoosed[28]}}" data-boxid="{{28}}"  bindtap="chooseGrid" class="{{(sudokuData[28].isGiven)?'grid1':'grid0'}}">{{sudokuData[28].data}}</text>
+          <input wx:if="{{gridChoosed[28]}}" bindinput="bindHideKeyboard" data-boxid="{{28}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[28].data}}</input>
+          <text wx:if="{{!gridChoosed[29]}}" data-boxid="{{29}}"  bindtap="chooseGrid" class="{{(sudokuData[29].isGiven)?'grid1':'grid0'}}">{{sudokuData[29].data}}</text>
+          <input wx:if="{{gridChoosed[29]}}" bindinput="bindHideKeyboard" data-boxid="{{29}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[29].data}}</input>
+          <text wx:if="{{!gridChoosed[36]}}" data-boxid="{{36}}"  bindtap="chooseGrid" class="{{(sudokuData[36].isGiven)?'grid1':'grid0'}}">{{sudokuData[36].data}}</text>
+          <input wx:if="{{gridChoosed[36]}}" bindinput="bindHideKeyboard" data-boxid="{{36}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[36].data}}</input>
+          <text wx:if="{{!gridChoosed[37]}}" data-boxid="{{37}}"  bindtap="chooseGrid" class="{{(sudokuData[37].isGiven)?'grid1':'grid0'}}">{{sudokuData[37].data}}</text>
+          <input wx:if="{{gridChoosed[37]}}" bindinput="bindHideKeyboard" data-boxid="{{37}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[37].data}}</input>
+          <text wx:if="{{!gridChoosed[38]}}" data-boxid="{{38}}"  bindtap="chooseGrid" class="{{(sudokuData[38].isGiven)?'grid1':'grid0'}}">{{sudokuData[38].data}}</text>
+          <input wx:if="{{gridChoosed[38]}}" bindinput="bindHideKeyboard" data-boxid="{{38}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[38].data}}</input>
+          <text wx:if="{{!gridChoosed[45]}}" data-boxid="{{45}}"  bindtap="chooseGrid" class="{{(sudokuData[45].isGiven)?'grid1':'grid0'}}">{{sudokuData[45].data}}</text>
+          <input wx:if="{{gridChoosed[45]}}" bindinput="bindHideKeyboard" data-boxid="{{45}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[45].data}}</input>
+          <text wx:if="{{!gridChoosed[46]}}" data-boxid="{{46}}"  bindtap="chooseGrid" class="{{(sudokuData[46].isGiven)?'grid1':'grid0'}}">{{sudokuData[46].data}}</text>
+          <input wx:if="{{gridChoosed[46]}}" bindinput="bindHideKeyboard" data-boxid="{{46}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[46].data}}</input>
+          <text wx:if="{{!gridChoosed[47]}}" data-boxid="{{47}}"  bindtap="chooseGrid" class="{{(sudokuData[47].isGiven)?'grid1':'grid0'}}">{{sudokuData[47].data}}</text>
+          <input wx:if="{{gridChoosed[47]}}" bindinput="bindHideKeyboard" data-boxid="{{47}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[47].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[30].isGiven?'grid1':'grid0'}}">{{sudokuData[30].data}}</text>
-          <text class="{{sudokuData[31].isGiven?'grid1':'grid0'}}">{{sudokuData[31].data}}</text>
-          <text class="{{sudokuData[32].isGiven?'grid1':'grid0'}}">{{sudokuData[32].data}}</text>
-          <text class="{{sudokuData[39].isGiven?'grid1':'grid0'}}">{{sudokuData[39].data}}</text>
-          <text class="{{sudokuData[40].isGiven?'grid1':'grid0'}}">{{sudokuData[40].data}}</text>
-          <text class="{{sudokuData[41].isGiven?'grid1':'grid0'}}">{{sudokuData[41].data}}</text>
-          <text class="{{sudokuData[48].isGiven?'grid1':'grid0'}}">{{sudokuData[48].data}}</text>
-          <text class="{{sudokuData[49].isGiven?'grid1':'grid0'}}">{{sudokuData[49].data}}</text>
-          <text class="{{sudokuData[50].isGiven?'grid1':'grid0'}}">{{sudokuData[50].data}}</text>
+          <text wx:if="{{!gridChoosed[30]}}" data-boxid="{{30}}"  bindtap="chooseGrid" class="{{(sudokuData[30].isGiven)?'grid1':'grid0'}}">{{sudokuData[30].data}}</text>
+          <input wx:if="{{gridChoosed[30]}}" bindinput="bindHideKeyboard" data-boxid="{{30}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[30].data}}</input>
+          <text wx:if="{{!gridChoosed[31]}}" data-boxid="{{31}}"  bindtap="chooseGrid" class="{{(sudokuData[31].isGiven)?'grid1':'grid0'}}">{{sudokuData[31].data}}</text>
+          <input wx:if="{{gridChoosed[31]}}" bindinput="bindHideKeyboard" data-boxid="{{31}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[31].data}}</input>
+          <text wx:if="{{!gridChoosed[32]}}" data-boxid="{{32}}"  bindtap="chooseGrid" class="{{(sudokuData[32].isGiven)?'grid1':'grid0'}}">{{sudokuData[32].data}}</text>
+          <input wx:if="{{gridChoosed[32]}}" bindinput="bindHideKeyboard" data-boxid="{{32}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[32].data}}</input>
+          <text wx:if="{{!gridChoosed[39]}}" data-boxid="{{39}}"  bindtap="chooseGrid" class="{{(sudokuData[39].isGiven)?'grid1':'grid0'}}">{{sudokuData[39].data}}</text>
+          <input wx:if="{{gridChoosed[39]}}" bindinput="bindHideKeyboard" data-boxid="{{39}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[39].data}}</input>
+          <text wx:if="{{!gridChoosed[40]}}" data-boxid="{{40}}"  bindtap="chooseGrid" class="{{(sudokuData[40].isGiven)?'grid1':'grid0'}}">{{sudokuData[40].data}}</text>
+          <input wx:if="{{gridChoosed[40]}}" bindinput="bindHideKeyboard" data-boxid="{{40}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[40].data}}</input>
+          <text wx:if="{{!gridChoosed[41]}}" data-boxid="{{41}}"  bindtap="chooseGrid" class="{{(sudokuData[41].isGiven)?'grid1':'grid0'}}">{{sudokuData[41].data}}</text>
+          <input wx:if="{{gridChoosed[41]}}" bindinput="bindHideKeyboard" data-boxid="{{41}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[41].data}}</input>
+          <text wx:if="{{!gridChoosed[48]}}" data-boxid="{{48}}"  bindtap="chooseGrid" class="{{(sudokuData[48].isGiven)?'grid1':'grid0'}}">{{sudokuData[48].data}}</text>
+          <input wx:if="{{gridChoosed[48]}}" bindinput="bindHideKeyboard" data-boxid="{{48}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[48].data}}</input>
+          <text wx:if="{{!gridChoosed[49]}}" data-boxid="{{49}}"  bindtap="chooseGrid" class="{{(sudokuData[49].isGiven)?'grid1':'grid0'}}">{{sudokuData[49].data}}</text>
+          <input wx:if="{{gridChoosed[49]}}" bindinput="bindHideKeyboard" data-boxid="{{49}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[49].data}}</input>
+          <text wx:if="{{!gridChoosed[50]}}" data-boxid="{{50}}"  bindtap="chooseGrid" class="{{(sudokuData[50].isGiven)?'grid1':'grid0'}}">{{sudokuData[50].data}}</text>
+          <input wx:if="{{gridChoosed[50]}}" bindinput="bindHideKeyboard" data-boxid="{{50}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[50].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[33].isGiven?'grid1':'grid0'}}">{{sudokuData[33].data}}</text>
-          <text class="{{sudokuData[34].isGiven?'grid1':'grid0'}}">{{sudokuData[34].data}}</text>
-          <text class="{{sudokuData[35].isGiven?'grid1':'grid0'}}">{{sudokuData[35].data}}</text>
-          <text class="{{sudokuData[42].isGiven?'grid1':'grid0'}}">{{sudokuData[42].data}}</text>
-          <text class="{{sudokuData[43].isGiven?'grid1':'grid0'}}">{{sudokuData[43].data}}</text>
-          <text class="{{sudokuData[44].isGiven?'grid1':'grid0'}}">{{sudokuData[44].data}}</text>
-          <text class="{{sudokuData[51].isGiven?'grid1':'grid0'}}">{{sudokuData[51].data}}</text>
-          <text class="{{sudokuData[52].isGiven?'grid1':'grid0'}}">{{sudokuData[52].data}}</text>
-          <text class="{{sudokuData[53].isGiven?'grid1':'grid0'}}">{{sudokuData[53].data}}</text>
+          <text wx:if="{{!gridChoosed[33]}}" data-boxid="{{33}}"  bindtap="chooseGrid" class="{{(sudokuData[33].isGiven)?'grid1':'grid0'}}">{{sudokuData[33].data}}</text>
+          <input wx:if="{{gridChoosed[33]}}" bindinput="bindHideKeyboard" data-boxid="{{33}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[33].data}}</input>
+          <text wx:if="{{!gridChoosed[34]}}" data-boxid="{{34}}"  bindtap="chooseGrid" class="{{(sudokuData[34].isGiven)?'grid1':'grid0'}}">{{sudokuData[34].data}}</text>
+          <input wx:if="{{gridChoosed[34]}}" bindinput="bindHideKeyboard" data-boxid="{{34}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[34].data}}</input>
+          <text wx:if="{{!gridChoosed[35]}}" data-boxid="{{35}}"  bindtap="chooseGrid" class="{{(sudokuData[35].isGiven)?'grid1':'grid0'}}">{{sudokuData[35].data}}</text>
+          <input wx:if="{{gridChoosed[35]}}" bindinput="bindHideKeyboard" data-boxid="{{35}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[35].data}}</input>
+          <text wx:if="{{!gridChoosed[42]}}" data-boxid="{{42}}"  bindtap="chooseGrid" class="{{(sudokuData[42].isGiven)?'grid1':'grid0'}}">{{sudokuData[42].data}}</text>
+          <input wx:if="{{gridChoosed[42]}}" bindinput="bindHideKeyboard" data-boxid="{{42}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[42].data}}</input>
+          <text wx:if="{{!gridChoosed[43]}}" data-boxid="{{43}}"  bindtap="chooseGrid" class="{{(sudokuData[43].isGiven)?'grid1':'grid0'}}">{{sudokuData[43].data}}</text>
+          <input wx:if="{{gridChoosed[43]}}" bindinput="bindHideKeyboard" data-boxid="{{43}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[43].data}}</input>
+          <text wx:if="{{!gridChoosed[44]}}" data-boxid="{{44}}"  bindtap="chooseGrid" class="{{(sudokuData[44].isGiven)?'grid1':'grid0'}}">{{sudokuData[44].data}}</text>
+          <input wx:if="{{gridChoosed[44]}}" bindinput="bindHideKeyboard" data-boxid="{{44}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[44].data}}</input>
+          <text wx:if="{{!gridChoosed[51]}}" data-boxid="{{51}}"  bindtap="chooseGrid" class="{{(sudokuData[51].isGiven)?'grid1':'grid0'}}">{{sudokuData[51].data}}</text>
+          <input wx:if="{{gridChoosed[51]}}" bindinput="bindHideKeyboard" data-boxid="{{51}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[51].data}}</input>
+          <text wx:if="{{!gridChoosed[52]}}" data-boxid="{{52}}"  bindtap="chooseGrid" class="{{(sudokuData[52].isGiven)?'grid1':'grid0'}}">{{sudokuData[52].data}}</text>
+          <input wx:if="{{gridChoosed[52]}}" bindinput="bindHideKeyboard" data-boxid="{{52}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[52].data}}</input>
+          <text wx:if="{{!gridChoosed[53]}}" data-boxid="{{53}}"  bindtap="chooseGrid" class="{{(sudokuData[53].isGiven)?'grid1':'grid0'}}">{{sudokuData[53].data}}</text>
+          <input wx:if="{{gridChoosed[53]}}" bindinput="bindHideKeyboard" data-boxid="{{53}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[53].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[54].isGiven?'grid1':'grid0'}}">{{sudokuData[54].data}}</text>
-          <text class="{{sudokuData[55].isGiven?'grid1':'grid0'}}">{{sudokuData[55].data}}</text>
-          <text class="{{sudokuData[56].isGiven?'grid1':'grid0'}}">{{sudokuData[56].data}}</text>
-          <text class="{{sudokuData[63].isGiven?'grid1':'grid0'}}">{{sudokuData[63].data}}</text>
-          <text class="{{sudokuData[64].isGiven?'grid1':'grid0'}}">{{sudokuData[64].data}}</text>
-          <text class="{{sudokuData[65].isGiven?'grid1':'grid0'}}">{{sudokuData[65].data}}</text>
-          <text class="{{sudokuData[72].isGiven?'grid1':'grid0'}}">{{sudokuData[72].data}}</text>
-          <text class="{{sudokuData[73].isGiven?'grid1':'grid0'}}">{{sudokuData[73].data}}</text>
-          <text class="{{sudokuData[74].isGiven?'grid1':'grid0'}}">{{sudokuData[74].data}}</text>
+          <text wx:if="{{!gridChoosed[54]}}" data-boxid="{{54}}"  bindtap="chooseGrid" class="{{(sudokuData[54].isGiven)?'grid1':'grid0'}}">{{sudokuData[54].data}}</text>
+          <input wx:if="{{gridChoosed[54]}}" bindinput="bindHideKeyboard" data-boxid="{{54}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[54].data}}</input>
+          <text wx:if="{{!gridChoosed[55]}}" data-boxid="{{55}}"  bindtap="chooseGrid" class="{{(sudokuData[55].isGiven)?'grid1':'grid0'}}">{{sudokuData[55].data}}</text>
+          <input wx:if="{{gridChoosed[55]}}" bindinput="bindHideKeyboard" data-boxid="{{55}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[55].data}}</input>
+          <text wx:if="{{!gridChoosed[56]}}" data-boxid="{{56}}"  bindtap="chooseGrid" class="{{(sudokuData[56].isGiven)?'grid1':'grid0'}}">{{sudokuData[56].data}}</text>
+          <input wx:if="{{gridChoosed[56]}}" bindinput="bindHideKeyboard" data-boxid="{{56}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[56].data}}</input>
+          <text wx:if="{{!gridChoosed[63]}}" data-boxid="{{63}}"  bindtap="chooseGrid" class="{{(sudokuData[63].isGiven)?'grid1':'grid0'}}">{{sudokuData[63].data}}</text>
+          <input wx:if="{{gridChoosed[63]}}" bindinput="bindHideKeyboard" data-boxid="{{63}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[63].data}}</input>
+          <text wx:if="{{!gridChoosed[64]}}" data-boxid="{{64}}"  bindtap="chooseGrid" class="{{(sudokuData[64].isGiven)?'grid1':'grid0'}}">{{sudokuData[64].data}}</text>
+          <input wx:if="{{gridChoosed[64]}}" bindinput="bindHideKeyboard" data-boxid="{{64}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[64].data}}</input>
+          <text wx:if="{{!gridChoosed[65]}}" data-boxid="{{65}}"  bindtap="chooseGrid" class="{{(sudokuData[65].isGiven)?'grid1':'grid0'}}">{{sudokuData[65].data}}</text>
+          <input wx:if="{{gridChoosed[65]}}" bindinput="bindHideKeyboard" data-boxid="{{65}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[65].data}}</input>
+          <text wx:if="{{!gridChoosed[72]}}" data-boxid="{{72}}"  bindtap="chooseGrid" class="{{(sudokuData[72].isGiven)?'grid1':'grid0'}}">{{sudokuData[72].data}}</text>
+          <input wx:if="{{gridChoosed[72]}}" bindinput="bindHideKeyboard" data-boxid="{{72}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[72].data}}</input>
+          <text wx:if="{{!gridChoosed[73]}}" data-boxid="{{73}}"  bindtap="chooseGrid" class="{{(sudokuData[73].isGiven)?'grid1':'grid0'}}">{{sudokuData[73].data}}</text>
+          <input wx:if="{{gridChoosed[73]}}" bindinput="bindHideKeyboard" data-boxid="{{73}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[73].data}}</input>
+          <text wx:if="{{!gridChoosed[74]}}" data-boxid="{{74}}"  bindtap="chooseGrid" class="{{(sudokuData[74].isGiven)?'grid1':'grid0'}}">{{sudokuData[74].data}}</text>
+          <input wx:if="{{gridChoosed[74]}}" bindinput="bindHideKeyboard" data-boxid="{{74}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[74].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[57].isGiven?'grid1':'grid0'}}">{{sudokuData[57].data}}</text>
-          <text class="{{sudokuData[58].isGiven?'grid1':'grid0'}}">{{sudokuData[58].data}}</text>
-          <text class="{{sudokuData[59].isGiven?'grid1':'grid0'}}">{{sudokuData[59].data}}</text>
-          <text class="{{sudokuData[66].isGiven?'grid1':'grid0'}}">{{sudokuData[66].data}}</text>
-          <text class="{{sudokuData[67].isGiven?'grid1':'grid0'}}">{{sudokuData[67].data}}</text>
-          <text class="{{sudokuData[68].isGiven?'grid1':'grid0'}}">{{sudokuData[68].data}}</text>
-          <text class="{{sudokuData[75].isGiven?'grid1':'grid0'}}">{{sudokuData[75].data}}</text>
-          <text class="{{sudokuData[76].isGiven?'grid1':'grid0'}}">{{sudokuData[76].data}}</text>
-          <text class="{{sudokuData[77].isGiven?'grid1':'grid0'}}">{{sudokuData[77].data}}</text>
+          <text wx:if="{{!gridChoosed[57]}}" data-boxid="{{57}}"  bindtap="chooseGrid" class="{{(sudokuData[57].isGiven)?'grid1':'grid0'}}">{{sudokuData[57].data}}</text>
+          <input wx:if="{{gridChoosed[57]}}" bindinput="bindHideKeyboard" data-boxid="{{57}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[57].data}}</input>
+          <text wx:if="{{!gridChoosed[58]}}" data-boxid="{{58}}"  bindtap="chooseGrid" class="{{(sudokuData[58].isGiven)?'grid1':'grid0'}}">{{sudokuData[58].data}}</text>
+          <input wx:if="{{gridChoosed[58]}}" bindinput="bindHideKeyboard" data-boxid="{{58}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[58].data}}</input>
+          <text wx:if="{{!gridChoosed[59]}}" data-boxid="{{59}}"  bindtap="chooseGrid" class="{{(sudokuData[59].isGiven)?'grid1':'grid0'}}">{{sudokuData[59].data}}</text>
+          <input wx:if="{{gridChoosed[59]}}" bindinput="bindHideKeyboard" data-boxid="{{59}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[59].data}}</input>
+          <text wx:if="{{!gridChoosed[66]}}" data-boxid="{{66}}"  bindtap="chooseGrid" class="{{(sudokuData[66].isGiven)?'grid1':'grid0'}}">{{sudokuData[66].data}}</text>
+          <input wx:if="{{gridChoosed[66]}}" bindinput="bindHideKeyboard" data-boxid="{{66}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[66].data}}</input>
+          <text wx:if="{{!gridChoosed[67]}}" data-boxid="{{67}}"  bindtap="chooseGrid" class="{{(sudokuData[67].isGiven)?'grid1':'grid0'}}">{{sudokuData[67].data}}</text>
+          <input wx:if="{{gridChoosed[67]}}" bindinput="bindHideKeyboard" data-boxid="{{67}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[67].data}}</input>
+          <text wx:if="{{!gridChoosed[68]}}" data-boxid="{{68}}"  bindtap="chooseGrid" class="{{(sudokuData[68].isGiven)?'grid1':'grid0'}}">{{sudokuData[68].data}}</text>
+          <input wx:if="{{gridChoosed[68]}}" bindinput="bindHideKeyboard" data-boxid="{{68}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[68].data}}</input>
+          <text wx:if="{{!gridChoosed[75]}}" data-boxid="{{75}}"  bindtap="chooseGrid" class="{{(sudokuData[75].isGiven)?'grid1':'grid0'}}">{{sudokuData[75].data}}</text>
+          <input wx:if="{{gridChoosed[75]}}" bindinput="bindHideKeyboard" data-boxid="{{75}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[75].data}}</input>
+          <text wx:if="{{!gridChoosed[76]}}" data-boxid="{{76}}"  bindtap="chooseGrid" class="{{(sudokuData[76].isGiven)?'grid1':'grid0'}}">{{sudokuData[76].data}}</text>
+          <input wx:if="{{gridChoosed[76]}}" bindinput="bindHideKeyboard" data-boxid="{{76}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[76].data}}</input>
+          <text wx:if="{{!gridChoosed[77]}}" data-boxid="{{77}}"  bindtap="chooseGrid" class="{{(sudokuData[77].isGiven)?'grid1':'grid0'}}">{{sudokuData[77].data}}</text>
+          <input wx:if="{{gridChoosed[77]}}" bindinput="bindHideKeyboard" data-boxid="{{77}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[77].data}}</input>
         </view>
         <view class="box0">
-          <text class="{{sudokuData[60].isGiven?'grid1':'grid0'}}">{{sudokuData[60].data}}</text>
-          <text class="{{sudokuData[61].isGiven?'grid1':'grid0'}}">{{sudokuData[61].data}}</text>
-          <text class="{{sudokuData[62].isGiven?'grid1':'grid0'}}">{{sudokuData[62].data}}</text>
-          <text class="{{sudokuData[69].isGiven?'grid1':'grid0'}}">{{sudokuData[69].data}}</text>
-          <text class="{{sudokuData[70].isGiven?'grid1':'grid0'}}">{{sudokuData[70].data}}</text>
-          <text class="{{sudokuData[71].isGiven?'grid1':'grid0'}}">{{sudokuData[71].data}}</text>
-          <text class="{{sudokuData[78].isGiven?'grid1':'grid0'}}">{{sudokuData[78].data}}</text>
-          <text class="{{sudokuData[79].isGiven?'grid1':'grid0'}}">{{sudokuData[79].data}}</text>
-          <text class="{{sudokuData[80].isGiven?'grid1':'grid0'}}">{{sudokuData[80].data}}</text>
+          <text wx:if="{{!gridChoosed[60]}}" data-boxid="{{60}}"  bindtap="chooseGrid" class="{{(sudokuData[60].isGiven)?'grid1':'grid0'}}">{{sudokuData[60].data}}</text>
+          <input wx:if="{{gridChoosed[60]}}" bindinput="bindHideKeyboard"  data-boxid="{{60}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[60].data}}</input>
+          <text wx:if="{{!gridChoosed[61]}}" data-boxid="{{61}}"  bindtap="chooseGrid" class="{{(sudokuData[61].isGiven)?'grid1':'grid0'}}">{{sudokuData[61].data}}</text>
+          <input wx:if="{{gridChoosed[61]}}" bindinput="bindHideKeyboard" data-boxid="{{61}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[61].data}}</input>
+          <text wx:if="{{!gridChoosed[62]}}" data-boxid="{{62}}"  bindtap="chooseGrid" class="{{(sudokuData[62].isGiven)?'grid1':'grid0'}}">{{sudokuData[62].data}}</text>
+          <input wx:if="{{gridChoosed[62]}}" bindinput="bindHideKeyboard" data-boxid="{{62}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[62].data}}</input>
+          <text wx:if="{{!gridChoosed[69]}}" data-boxid="{{69}}"  bindtap="chooseGrid" class="{{(sudokuData[69].isGiven)?'grid1':'grid0'}}">{{sudokuData[69].data}}</text>
+          <input wx:if="{{gridChoosed[69]}}" bindinput="bindHideKeyboard" data-boxid="{{69}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[69].data}}</input>
+          <text wx:if="{{!gridChoosed[70]}}" data-boxid="{{70}}"  bindtap="chooseGrid" class="{{(sudokuData[70].isGiven)?'grid1':'grid0'}}">{{sudokuData[70].data}}</text>
+          <input wx:if="{{gridChoosed[70]}}" bindinput="bindHideKeyboard" data-boxid="{{70}}" bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[70].data}}</input>
+          <text wx:if="{{!gridChoosed[71]}}" data-boxid="{{71}}"  bindtap="chooseGrid" class="{{(sudokuData[71].isGiven)?'grid1':'grid0'}}">{{sudokuData[71].data}}</text>
+          <input wx:if="{{gridChoosed[71]}}" bindinput="bindHideKeyboard" data-boxid="{{71}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[71].data}}</input>
+          <text wx:if="{{!gridChoosed[78]}}" data-boxid="{{78}}"  bindtap="chooseGrid" class="{{(sudokuData[78].isGiven)?'grid1':'grid0'}}">{{sudokuData[78].data}}</text>
+          <input wx:if="{{gridChoosed[78]}}" bindinput="binHideKeyboard" data-boxid="{{78}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[78].data}}</input>
+          <text wx:if="{{!gridChoosed[79]}}" data-boxid="{{79}}"  bindtap="chooseGrid" class="{{(sudokuData[79].isGiven)?'grid1':'grid0'}}">{{sudokuData[79].data}}</text>
+          <input wx:if="{{gridChoosed[79]}}" bindinput="bindHideKeyboard" data-boxid="{{79}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[79].data}}</input>
+          <text wx:if="{{!gridChoosed[80]}}" data-boxid="{{80}}" bindtap="chooseGrid" class="{{(sudokuData[80].isGiven)?'grid1':'grid0'}}">{{sudokuData[80].data}}</text>
+          <input wx:if="{{gridChoosed[80]}}" bindinput="bindHideKeyboard" data-boxid="{{80}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[80].data}}</input>
         </view>
 
       </view>
