@@ -78,6 +78,7 @@ module.exports = class cvhelper {
         this.imageData = null;
     }
 
+    // 查找轮廓
     async getCanndy() {
         // 将图像转换为ImageData
         var mat = await this.getBlackMat();

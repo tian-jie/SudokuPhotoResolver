@@ -1,0 +1,131 @@
+D:\tools\python\conda\envs\tf2.3-gpu\python.exe E:/biye/项目整理/代码/tensorflow模板分类代码/果蔬分类/fv_tf2.3_cpu/train_cnn.py
+2021-05-08 22:54:16.271149: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudart64_101.dll
+Found 841 files belonging to 12 classes.
+2021-05-08 22:54:19.627615: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library nvcuda.dll
+2021-05-08 22:54:19.703226: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties:
+pciBusID: 0000:01:00.0 name: GeForce RTX 2070 SUPER computeCapability: 7.5
+coreClock: 1.815GHz coreCount: 40 deviceMemorySize: 8.00GiB deviceMemoryBandwidth: 417.29GiB/s
+2021-05-08 22:54:19.703392: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudart64_101.dll
+2021-05-08 22:54:19.739759: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cublas64_10.dll
+2021-05-08 22:54:19.778525: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cufft64_10.dll
+2021-05-08 22:54:19.786816: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library curand64_10.dll
+2021-05-08 22:54:19.829763: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cusolver64_10.dll
+2021-05-08 22:54:19.848903: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cusparse64_10.dll
+2021-05-08 22:54:19.928391: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudnn64_7.dll
+2021-05-08 22:54:19.928559: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0
+2021-05-08 22:54:19.928879: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2021-05-08 22:54:19.935705: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x1fe3a204c70 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-08 22:54:19.935820: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-05-08 22:54:19.936007: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties:
+pciBusID: 0000:01:00.0 name: GeForce RTX 2070 SUPER computeCapability: 7.5
+coreClock: 1.815GHz coreCount: 40 deviceMemorySize: 8.00GiB deviceMemoryBandwidth: 417.29GiB/s
+2021-05-08 22:54:19.936154: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudart64_101.dll
+2021-05-08 22:54:19.936230: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cublas64_10.dll
+2021-05-08 22:54:19.936302: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cufft64_10.dll
+2021-05-08 22:54:19.936375: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library curand64_10.dll
+2021-05-08 22:54:19.936452: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cusolver64_10.dll
+2021-05-08 22:54:19.936523: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cusparse64_10.dll
+2021-05-08 22:54:19.936595: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudnn64_7.dll
+2021-05-08 22:54:19.936687: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0
+2021-05-08 22:54:21.180250: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1257] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-05-08 22:54:21.180337: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1263]      0
+2021-05-08 22:54:21.180388: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 0:   N
+2021-05-08 22:54:21.180599: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 6613 MB memory) -> physical GPU (device: 0, name: GeForce RTX 2070 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-05-08 22:54:21.183274: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x1fe5166c140 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-05-08 22:54:21.183377: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce RTX 2070 SUPER, Compute Capability 7.5
+Found 391 files belonging to 12 classes.
+['土豆', '圣女果', '大白菜', '大葱', '梨', '胡萝卜', '芒果', '苹果', '西红柿', '韭菜', '香蕉', '黄瓜']
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+rescaling (Rescaling)        (None, 224, 224, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 222, 222, 32)      896
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 111, 111, 32)      0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 109, 109, 64)      18496
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 54, 54, 64)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 186624)            0
+_________________________________________________________________
+dense (Dense)                (None, 128)               23888000
+_________________________________________________________________
+dense_1 (Dense)              (None, 12)                1548
+=================================================================
+Total params: 23,908,940
+Trainable params: 23,908,940
+Non-trainable params: 0
+_________________________________________________________________
+Epoch 1/30
+2021-05-08 22:54:21.914638: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cublas64_10.dll
+2021-05-08 22:54:22.744379: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library cudnn64_7.dll
+2021-05-08 22:54:25.220582: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] Internal: Invoking GPU asm compilation is supported on Cuda non-Windows platforms only
+Relying on driver to perform ptx compilation.
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+53/53 [==============================] - 5s 100ms/step - loss: 2.4361 - accuracy: 0.1546 - val_loss: 2.3005 - val_accuracy: 0.1944
+Epoch 2/30
+53/53 [==============================] - 2s 42ms/step - loss: 2.1947 - accuracy: 0.1986 - val_loss: 2.2157 - val_accuracy: 0.1739
+Epoch 3/30
+53/53 [==============================] - 2s 41ms/step - loss: 1.9913 - accuracy: 0.2759 - val_loss: 2.6969 - val_accuracy: 0.1586
+Epoch 4/30
+53/53 [==============================] - 2s 41ms/step - loss: 1.8431 - accuracy: 0.3389 - val_loss: 2.0947 - val_accuracy: 0.2711
+Epoch 5/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.6075 - accuracy: 0.3769 - val_loss: 1.7024 - val_accuracy: 0.3248
+Epoch 6/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.5447 - accuracy: 0.4328 - val_loss: 1.5997 - val_accuracy: 0.4194
+Epoch 7/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.3940 - accuracy: 0.4649 - val_loss: 1.5904 - val_accuracy: 0.4246
+Epoch 8/30
+53/53 [==============================] - 2s 41ms/step - loss: 1.3325 - accuracy: 0.5113 - val_loss: 1.3688 - val_accuracy: 0.4655
+Epoch 9/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.3382 - accuracy: 0.4887 - val_loss: 1.2985 - val_accuracy: 0.4783
+Epoch 10/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.1870 - accuracy: 0.5648 - val_loss: 1.3353 - val_accuracy: 0.4552
+Epoch 11/30
+53/53 [==============================] - 2s 42ms/step - loss: 1.1351 - accuracy: 0.5838 - val_loss: 1.3351 - val_accuracy: 0.4910
+Epoch 12/30
+53/53 [==============================] - 2s 41ms/step - loss: 1.1483 - accuracy: 0.5755 - val_loss: 1.4389 - val_accuracy: 0.4757
+Epoch 13/30
+53/53 [==============================] - 2s 41ms/step - loss: 1.0602 - accuracy: 0.6231 - val_loss: 1.4851 - val_accuracy: 0.4731
+Epoch 14/30
+53/53 [==============================] - 2s 42ms/step - loss: 0.9984 - accuracy: 0.6302 - val_loss: 2.8033 - val_accuracy: 0.3146
+Epoch 15/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.9645 - accuracy: 0.6587 - val_loss: 1.7750 - val_accuracy: 0.4092
+Epoch 16/30
+53/53 [==============================] - 2s 43ms/step - loss: 0.8797 - accuracy: 0.6849 - val_loss: 1.6178 - val_accuracy: 0.4143
+Epoch 17/30
+53/53 [==============================] - 2s 42ms/step - loss: 0.8255 - accuracy: 0.6932 - val_loss: 1.1876 - val_accuracy: 0.5141
+Epoch 18/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.8190 - accuracy: 0.6932 - val_loss: 1.1244 - val_accuracy: 0.5473
+Epoch 19/30
+53/53 [==============================] - 2s 43ms/step - loss: 0.6917 - accuracy: 0.7539 - val_loss: 1.4855 - val_accuracy: 0.5064
+Epoch 20/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.7184 - accuracy: 0.7372 - val_loss: 1.6330 - val_accuracy: 0.4885
+Epoch 21/30
+53/53 [==============================] - 2s 42ms/step - loss: 0.7103 - accuracy: 0.7586 - val_loss: 2.0842 - val_accuracy: 0.4297
+Epoch 22/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.5759 - accuracy: 0.7943 - val_loss: 1.5086 - val_accuracy: 0.5141
+Epoch 23/30
+53/53 [==============================] - 2s 43ms/step - loss: 0.6134 - accuracy: 0.7741 - val_loss: 1.4308 - val_accuracy: 0.5524
+Epoch 24/30
+53/53 [==============================] - 2s 42ms/step - loss: 0.4885 - accuracy: 0.8169 - val_loss: 2.0498 - val_accuracy: 0.4757
+Epoch 25/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.4374 - accuracy: 0.8537 - val_loss: 1.5717 - val_accuracy: 0.5499
+Epoch 26/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.4341 - accuracy: 0.8561 - val_loss: 1.8207 - val_accuracy: 0.5166
+Epoch 27/30
+53/53 [==============================] - 2s 42ms/step - loss: 0.4069 - accuracy: 0.8526 - val_loss: 1.9165 - val_accuracy: 0.5115
+Epoch 28/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.3568 - accuracy: 0.8847 - val_loss: 1.5131 - val_accuracy: 0.5678
+Epoch 29/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.2987 - accuracy: 0.9108 - val_loss: 1.7181 - val_accuracy: 0.5192
+Epoch 30/30
+53/53 [==============================] - 2s 41ms/step - loss: 0.3554 - accuracy: 0.8966 - val_loss: 2.0248 - val_accuracy: 0.4808
+该循环程序运行时间： 81.47396397590637 s
+
+Process finished with exit code 0

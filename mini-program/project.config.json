@@ -1,74 +1,73 @@
 {
-  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-  "packOptions": {
-    "ignore": [
-      {
-        "value": "screenshot",
-        "type": "folder"
-      },
-      {
-        "value": "node_dev",
-        "type": "folder"
-      },
-      {
-        "value": "go_dev",
-        "type": "folder"
-      },
-      {
-        "value": "opencv_dev",
-        "type": "folder"
-      }
-    ],
-    "include": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": false,
-    "enhance": false,
-    "postcss": false,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": true,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    "packOptions": {
+        "ignore": [
+            {
+                "value": "screenshot",
+                "type": "folder"
+            },
+            {
+                "value": "node_dev",
+                "type": "folder"
+            },
+            {
+                "value": "go_dev",
+                "type": "folder"
+            },
+            {
+                "value": "opencv_dev",
+                "type": "folder"
+            }
+        ],
+        "include": []
     },
-    "enableEngineNative": false,
-    "useIsolateContext": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "minifyWXML": true,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
-    "useStaticServer": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.16.1",
-  "appid": "wx6a701ae7af31f6c4",
-  "projectname": "WeChat-WebAR",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {},
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  }
+    "setting": {
+        "urlCheck": false,
+        "es6": false,
+        "enhance": false,
+        "postcss": false,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": true,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": true,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": false,
+        "useApiHook": false,
+        "useApiHostProcess": false,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
+        },
+        "useIsolateContext": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "disableUseStrict": false,
+        "minifyWXML": true,
+        "showES6CompileOption": false,
+        "useCompilerPlugins": false,
+        "ignoreUploadUnusedFiles": true
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.16.1",
+    "appid": "wx6a701ae7af31f6c4",
+    "projectname": "mini-program",
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 2
+    },
+    "condition": {}
 }

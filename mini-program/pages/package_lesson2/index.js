@@ -5,8 +5,8 @@ var sampleImage1 = '/assets/1.jpg'
 var wx2sync = require("../../utils/wx2sync.js")
 
 //const url = "http://192.168.1.35:5000/SudokuResolver"
-const recognizeUrl = "https://sudoku-resolver.zainot.com/ScanSudoku"
-const resolveUrl = "https://sudoku-resolver.zainot.com/ResolveSudoku"
+const recognizeUrl = "https://localhost:55004//ScanSudoku"
+const resolveUrl = "https://localhost:55004/m/ResolveSudoku"
 
 // wasm路径
 global.wasm_url = '/assets/opencv3.4.16.wasm.br'
@@ -46,7 +46,10 @@ Page({
   onReady() {
     for (var i = 0; i < 81; i++) {
       this.data.gridChoosed.push(false);
-      this.data.sudokuData.push({isGiven: false, data: ""});
+      this.data.sudokuData.push({
+        isGiven: false,
+        data: ""
+      });
     }
     // 可见的画布
     this.initCanvas(canvas1);
@@ -103,7 +106,9 @@ Page({
           if (res.tapIndex == 0) {
             imagePath = chooseWxImage(_that, 'album')
           } else if (res.tapIndex == 1) {
-            _that.setData({ isTakePhoto: true });
+            _that.setData({
+              isTakePhoto: true
+            });
             if (!await authorizeCamera(_that)) {
               return;
             }
@@ -119,7 +124,9 @@ Page({
   },
 
   async cancelTakePhoto() {
-    this.setData({ isTakePhoto: false });
+    this.setData({
+      isTakePhoto: false
+    });
   },
 
   // 相机前后镜头转换
@@ -131,22 +138,31 @@ Page({
 
   async resolve() {
     // 提交数字串，得到答案
-    wx.showLoading({ title: '求解中，请稍候...', mask: true });
+    wx.showLoading({
+      title: '求解中，请稍候...',
+      mask: true
+    });
     let data1 = this.data.sudokuData;
     let data2 = [];
     data1.forEach((item) => {
       data2.push(item.isGiven ? item.data : 0);
     });
-    var result = await wx2sync.request(resolveUrl, { numbers: data2 });
+    var result = await wx2sync.request(resolveUrl, {
+      numbers: data2
+    });
     if (!result.hasResult) {
-      wx.showToast({ title: '无解！' });
+      wx.showToast({
+        title: '无解！'
+      });
       return;
     }
     var data = this.data.sudokuData;
     for (var i = 0; i < 81; i++) {
       data[i].data = result.numbers[i];
     }
-    this.setData({ sudokuData: data });
+    this.setData({
+      sudokuData: data
+    });
 
     wx.hideLoading();
   },
@@ -154,8 +170,10 @@ Page({
   async chooseGrid(e) {
     var boxId = e.target.dataset.boxid;
     this.data.gridChoosed[boxId] = true;
-    this.setData({ gridChoosed: this.data.gridChoosed });
-    
+    this.setData({
+      gridChoosed: this.data.gridChoosed
+    });
+
   },
   bindHideKeyboard(e) {
     if (e.detail.value.length >= 1) {
@@ -170,11 +188,15 @@ Page({
       console.debug(this.data.sudokuData);
       console.debug(this.data.gridChoosed);
       this.data.gridChoosed[e.target.dataset.boxid] = false;
-      this.setData({ gridChoosed: this.data.gridChoosed });
+      this.setData({
+        gridChoosed: this.data.gridChoosed
+      });
       this.data.sudokuData[e.target.dataset.boxid].isGiven = true;
       this.data.sudokuData[e.target.dataset.boxid].data = c;
-      
-      this.setData({ sudokuData: this.data.sudokuData });
+
+      this.setData({
+        sudokuData: this.data.sudokuData
+      });
       console.debug("set sudokuData: ", c);
       return c;
     }
@@ -184,7 +206,9 @@ Page({
         isGiven: false,
         data: ""
       };
-      this.setData({ sudokuData: this.data.sudokuData });
+      this.setData({
+        sudokuData: this.data.sudokuData
+      });
       console.debug("set sudokuData: ''");
     }
   },
@@ -202,20 +226,27 @@ async function chooseWxImage(_that, type) {
   }
   console.debug("finished photo")
 
-  wx.showLoading({ title: '识别中，请稍候...', mask: true });
+  wx.showLoading({
+    title: '识别中，请稍候...',
+    mask: true
+  });
 
-  _that.setData({
-    sampleImage1Url: filepath,
-  })
-  sampleImage1 = filepath;
+  try {
+    _that.setData({
+      sampleImage1Url: filepath,
+    })
+    sampleImage1 = filepath;
 
-  await cvhelper.createImageElement(sampleImage1);
-  var srcMat = await cvhelper.getSrcMat();
-  var dstMat = await cvhelper.getTransform();
-  cv.imshow(_that.canvasDom, dstMat);
+    await cvhelper.createImageElement(sampleImage1);
+    var srcMat = await cvhelper.getSrcMat();
+    var dstMat = await cvhelper.getTransform();
+    cv.imshow(_that.canvasDom, dstMat);
 
 
-  await recognize(_that);
+    await recognize(_that);
+  } catch (ex) {
+    console.log(ex.message);
+  }
   wx.hideLoading();
   console.log("gridChoosed: ", _that.data.gridChoosed);
 
@@ -225,9 +256,14 @@ async function takePhotoDirectly(_that, cameraContext) {
   try {
     // 拍照
     var photoFilepath = await wx2sync.takePhoto(cameraContext);
-    _that.setData({ isTakePhoto: false });
+    _that.setData({
+      isTakePhoto: false
+    });
     console.debug("photoFilepath: ", photoFilepath);
-    wx.showLoading({ title: '识别中，请稍候...', mask: true });
+    wx.showLoading({
+      title: '识别中，请稍候...',
+      mask: true
+    });
 
     _that.setData({
       sampleImage1Url: photoFilepath,
@@ -254,8 +290,7 @@ async function authorizeCamera(_that) {
   } catch (ex) {
     try {
       var modelResult = await wx2sync.showModel("请授权您的摄像头", "如需要拍照识别，授权同意使用您的摄像头", "确认，去同意授权", "不了，我换个用法");
-      if (modelResult.confirm) {
-      } else { //取消
+      if (modelResult.confirm) {} else { //取消
         wx.showToast({
           title: '授权失败',
           icon: 'none',
@@ -322,7 +357,9 @@ async function recognize(_that) {
     let x = (i % 9) * width + border;
     let y = Math.trunc(i / 9) * width + border;
 
-    var offscreenCanvasGrid = wx.createOffscreenCanvas({ type: '2d' });
+    var offscreenCanvasGrid = wx.createOffscreenCanvas({
+      type: '2d'
+    });
 
     // 离屏画布的宽度和高度不能小于图像的
     offscreenCanvasGrid.width = width - border * 2;
@@ -374,7 +411,9 @@ async function recognize(_that) {
 
   console.debug("base64Datas: ", base64Datas);
 
-  var result = await wx2sync.request(recognizeUrl, { base64Datas: base64Datas });
+  var result = await wx2sync.request(recognizeUrl, {
+    base64Datas: base64Datas
+  });
   console.log(result);
   // TODO: 获取到了数字，81个数字。在界面上给显示出来
   let data = [];
@@ -385,5 +424,7 @@ async function recognize(_that) {
     });
 
   });
-  _that.setData({ sudokuData: data });
+  _that.setData({
+    sudokuData: data
+  });
 }

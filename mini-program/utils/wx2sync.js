@@ -88,8 +88,6 @@ async function chooseImage(_that, type, sizeType = ['original', 'compressed'], c
 }
 
 async function takePhoto(cameraContext) {
-    console.debug("taking photo");
-
     return await new Promise((resolve, reject) => {
         console.debug("cameraContext created: ", cameraContext);
 
