@@ -33,6 +33,12 @@ namespace WebApplication1.Controllers
   
             using (var engine = new TesseractEngine(System.AppDomain.CurrentDomain.BaseDirectory + "tessdata", "digits", EngineMode.Default))
             {
+                var folder = System.AppDomain.CurrentDomain.BaseDirectory + "tmp\\";
+                // 如果目录不存在，则创建目录
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
                 engine.DefaultPageSegMode = PageSegMode.SingleChar;
                 for (var i = 0; i < 81; i++)
                 {

@@ -183,10 +183,10 @@
           <text wx:if="{{!gridChoosed[71]}}" data-boxid="{{71}}"  bindtap="chooseGrid" class="{{(sudokuData[71].isGiven)?'grid1':'grid0'}}">{{sudokuData[71].data}}</text>
           <input wx:if="{{gridChoosed[71]}}" bindinput="bindHideKeyboard" data-boxid="{{71}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[71].data}}</input>
           <text wx:if="{{!gridChoosed[78]}}" data-boxid="{{78}}"  bindtap="chooseGrid" class="{{(sudokuData[78].isGiven)?'grid1':'grid0'}}">{{sudokuData[78].data}}</text>
-          <input wx:if="{{gridChoosed[78]}}" bindinput="binHideKeyboard" data-boxid="{{78}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[78].data}}</input>
+          <input wx:if="{{gridChoosed[78]}}" bindinput="bindHideKeyboard" data-boxid="{{78}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[78].data}}</input>
           <text wx:if="{{!gridChoosed[79]}}" data-boxid="{{79}}"  bindtap="chooseGrid" class="{{(sudokuData[79].isGiven)?'grid1':'grid0'}}">{{sudokuData[79].data}}</text>
           <input wx:if="{{gridChoosed[79]}}" bindinput="bindHideKeyboard" data-boxid="{{79}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[79].data}}</input>
-          <text wx:if="{{!gridChoosed[80]}}" data-boxid="{{80}}" bindtap="chooseGrid" class="{{(sudokuData[80].isGiven)?'grid1':'grid0'}}">{{sudokuData[80].data}}</text>
+          <text wx:if="{{!gridChoosed[80]}}" data-boxid="{{80}}"  bindtap="chooseGrid" class="{{(sudokuData[80].isGiven)?'grid1':'grid0'}}">{{sudokuData[80].data}}</text>
           <input wx:if="{{gridChoosed[80]}}" bindinput="bindHideKeyboard" data-boxid="{{80}}"  bindtap="chooseGrid" confirm-type="确认" type="number" class="grid1" focus="true" selection-start ="-1" selection-end="-1">{{sudokuData[80].data}}</input>
         </view>
 

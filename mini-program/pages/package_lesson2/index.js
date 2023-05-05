@@ -5,6 +5,12 @@ var sampleImage1 = '/assets/1.jpg'
 var wx2sync = require("../../utils/wx2sync.js")
 
 //const url = "http://192.168.1.35:5000/SudokuResolver"
+
+// const uploadImgUrl = "https://localhost:5001/SourceImageSudoku"
+// const recognizeUrl = "https://localhost:5001/ScanSudoku"
+// const resolveUrl = "https://localhost:5001/ResolveSudoku"
+
+const uploadImgUrl = "https://sudoku-resolver.zainot.com/SourceImageSudoku"
 const recognizeUrl = "https://sudoku-resolver.zainot.com/ScanSudoku"
 const resolveUrl = "https://sudoku-resolver.zainot.com/ResolveSudoku"
 
@@ -46,7 +52,7 @@ Page({
   onReady() {
     for (var i = 0; i < 81; i++) {
       this.data.gridChoosed.push(false);
-      this.data.sudokuData.push({isGiven: false, data: ""});
+      this.data.sudokuData.push({ isGiven: false, data: "" });
     }
     // 可见的画布
     this.initCanvas(canvas1);
@@ -155,7 +161,7 @@ Page({
     var boxId = e.target.dataset.boxid;
     this.data.gridChoosed[boxId] = true;
     this.setData({ gridChoosed: this.data.gridChoosed });
-    
+
   },
   bindHideKeyboard(e) {
     if (e.detail.value.length >= 1) {
@@ -173,7 +179,7 @@ Page({
       this.setData({ gridChoosed: this.data.gridChoosed });
       this.data.sudokuData[e.target.dataset.boxid].isGiven = true;
       this.data.sudokuData[e.target.dataset.boxid].data = c;
-      
+
       this.setData({ sudokuData: this.data.sudokuData });
       console.debug("set sudokuData: ", c);
       return c;
@@ -209,6 +215,15 @@ async function chooseWxImage(_that, type) {
   })
   sampleImage1 = filepath;
 
+  try {
+    console.debug("uploading photo...")
+    var uploadedImageInfo = await uploadImage(filepath);
+    console.debug("finished uploading photo: ", uploadedImageInfo);
+  }
+  catch (ex) {
+    console.debug(ex);
+  }
+
   await cvhelper.createImageElement(sampleImage1);
   var srcMat = await cvhelper.getSrcMat();
   var dstMat = await cvhelper.getTransform();
@@ -222,18 +237,27 @@ async function chooseWxImage(_that, type) {
 }
 
 async function takePhotoDirectly(_that, cameraContext) {
+
+  // 拍照
+  var photoFilepath = await wx2sync.takePhoto(cameraContext);
+  _that.setData({ isTakePhoto: false });
+  console.debug("photoFilepath: ", photoFilepath);
+  wx.showLoading({ title: '识别中，请稍候...', mask: true });
+
+  _that.setData({
+    sampleImage1Url: photoFilepath,
+  })
+  sampleImage1 = photoFilepath;
+
   try {
-    // 拍照
-    var photoFilepath = await wx2sync.takePhoto(cameraContext);
-    _that.setData({ isTakePhoto: false });
-    console.debug("photoFilepath: ", photoFilepath);
-    wx.showLoading({ title: '识别中，请稍候...', mask: true });
-
-    _that.setData({
-      sampleImage1Url: photoFilepath,
-    })
-    sampleImage1 = photoFilepath;
-
+    console.debug("uploading photo...")
+    var uploadedImageInfo = await uploadImage(photoFilepath);
+    console.debug("finished uploading photo: ", uploadedImageInfo);
+  }
+  catch (ex) {
+    console.debug(ex);
+  }
+  try {
     await cvhelper.createImageElement(sampleImage1);
     var srcMat = await cvhelper.getSrcMat();
     var dstMat = await cvhelper.getTransform();
@@ -386,4 +410,26 @@ async function recognize(_that) {
 
   });
   _that.setData({ sudokuData: data });
+}
+
+async function uploadImage(imagefilename) {
+  await new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: uploadImgUrl, //开发者服务器的 url
+      filePath: imagefilename, // 要上传文件资源的路径 String类型！！！
+      name: 'files', // 文件对应的 key ,(后台接口规定的关于图片的请求参数)
+      header: {
+        'content-type': 'multipart/form-data'
+      }, // 设置请求的 header
+      formData: {
+        filename: imagefilename
+      }, // HTTP 请求中其他额外的参数
+      success: function (res) {
+        resolve(res);
+      },
+      fail: function (res) {
+        reject(res);
+      }
+    })
+  });
 }
