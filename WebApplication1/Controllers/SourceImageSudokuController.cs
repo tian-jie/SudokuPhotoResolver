@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OpenCvSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,9 +17,9 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class SourceImageSudokuController : ControllerBase
     {
-        private readonly ILogger<ResolveSudokuController> _logger;
+        private readonly ILogger<SourceImageSudokuController> _logger;
 
-        public SourceImageSudokuController(ILogger<ResolveSudokuController> logger)
+        public SourceImageSudokuController(ILogger<SourceImageSudokuController> logger)
         {
             _logger = logger;
         }
@@ -27,21 +28,37 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<SourceImageSudokuResponseData> Post(List<IFormFile> files)
         {
-            long size = files.Sum(f => f.Length);
-
-            foreach (var formFile in files)
+            if (files.Count == 0)
             {
-                string fileName = Guid.NewGuid().ToString() + ".png";
-                string filePath = Path.Combine("sourceImages", fileName);
-
-                if (formFile.Length > 0)
+                return new SourceImageSudokuResponseData()
                 {
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                }
+                    status = 500,
+                    errorMessage = "invalid source image file - filesCount=0"
+                };
             }
+
+            var formFile = files[0];
+            if (formFile.Length == 0)
+            {
+                return new SourceImageSudokuResponseData()
+                {
+                    status = 500,
+                    errorMessage = "invalid source image file - fileSize=0"
+                };
+            }
+
+            string fileName = Guid.NewGuid().ToString() + ".png";
+            string filePath = Path.Combine("sourceImages", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await formFile.CopyToAsync(stream);
+            }
+
+
+            Bitmap bitmap = new Bitmap(Image.FromFile(filePath));
+            // 保存完文件后开始直接在服务器端解析数独
+            var result = SolveSudokuService.RecognizeSudoku(bitmap);
 
             return new SourceImageSudokuResponseData()
             {
@@ -49,6 +66,8 @@ namespace WebApplication1.Controllers
                 errorMessage = "success"
             };
         }
+
+
 
 
         public class SourceImageSudokuRequestData
