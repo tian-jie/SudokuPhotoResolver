@@ -1,0 +1,1 @@
+copy /b yolov7-sudoku.onnx-00+yolov7-sudoku.onnx-01+yolov7-sudoku.onnx-02 yolov7-sudoku.onnx

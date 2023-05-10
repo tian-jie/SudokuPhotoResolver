@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
         {
             var numbers = new List<int>();
   
-            using (var engine = new TesseractEngine(System.AppDomain.CurrentDomain.BaseDirectory + "tessdata", "digits", EngineMode.Default))
+            using (var engine = new TesseractEngine(System.AppDomain.CurrentDomain.BaseDirectory + "assets/tessdata", "digits", EngineMode.Default))
             {
                 var folder = System.AppDomain.CurrentDomain.BaseDirectory + "tmp\\";
                 // 如果目录不存在，则创建目录
